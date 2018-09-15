@@ -29,14 +29,14 @@
 * 1W transmission power
 * 10Kbit/s (with factor of safety)
 
-| Data | Rate (Hz) | Size (Bytes) | Bits/sec |
-| - | - | - | - |
-| Pitch/Roll/Yaw | 20 | 4 | 640 |
-| Altitude | 5 | 2 | 80 |
-| GPS | 5 | 8 | 320 |
-| Accel x/y/z | 5 | 3 | 104 |
-| Science | 100 | 2 | 800 |
-| Status | 5 | 2 | 80 |
+| Data | Rate (Hz) | Size (Bytes) | Bits/sec | Phase |
+| - | - | - | - | - |
+| Pitch/Roll/Yaw | 20 | 4 | 640 | UKN |
+| Altitude | 5 | 2 | 80 | Main |
+| GPS | 5 | 8 | 320 | Main, Science |
+| Accel x/y/z | 5 | 3 | 104 | Unarmed |
+| Science | 100 | 2 | 800 | Science |
+| Status | 5 | 2 | 80 | Unarmed |
 Continued...
 
 ---
