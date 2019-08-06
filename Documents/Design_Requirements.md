@@ -53,6 +53,7 @@
 * 10Kbit/s (with factor of safety) [Spitballed]
 
 Note: Table below are very rough estimations - needs closer look
+
 | Data | Rate (Hz) | Size (Bytes) | Bits/sec | Phase |
 | - | - | - | - | - |
 | Pitch/Roll/Yaw | 20 | 4 | 640 | UKN |
@@ -61,6 +62,7 @@ Note: Table below are very rough estimations - needs closer look
 | Accel x/y/z | 5 | 3 | 104 | Unarmed |
 | Science | 100 | 2 | 800 | Science |
 | Status | 5 | 2 | 80 | Unarmed |
+
 Continued...
 
 ---
