@@ -1,0 +1,38 @@
+EESchema Schematic File Version 4
+LIBS:Sensors-cache
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Sensor_Motion:BNO055 U?
+U 1 1 5D4B688F
+P 2350 2150
+F 0 "U?" H 2350 3028 50  0000 C CNN
+F 1 "BNO055" H 2350 2937 50  0000 C CNN
+F 2 "Package_LGA:LGA-28_5.2x3.8mm_P0.5mm" H 2600 1500 50  0001 L CNN
+F 3 "https://ae-bst.resource.bosch.com/media/_tech/media/datasheets/BST_BNO055_DS000_14.pdf" H 2350 2350 50  0001 C CNN
+	1    2350 2150
+	1    0    0    -1  
+$EndComp
+Text Notes 900  950  0    100  ~ 0
+Accelerometer / Magnetometer / Gyro
+Wire Notes Line
+	550  650  550  3500
+Wire Notes Line
+	550  3500 4350 3500
+Wire Notes Line
+	4350 3500 4350 650 
+Wire Notes Line
+	4350 650  550  650 
+$EndSCHEMATC

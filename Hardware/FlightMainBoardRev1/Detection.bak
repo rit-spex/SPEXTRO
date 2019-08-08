@@ -1,0 +1,378 @@
+EESchema Schematic File Version 4
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Text GLabel 1250 950  0    50   Input ~ 0
++3.3v
+$Comp
+L Device:R R?
+U 1 1 5D4B6D29
+P 1300 1200
+F 0 "R?" H 1370 1246 50  0000 L CNN
+F 1 "10k" H 1370 1155 50  0000 L CNN
+F 2 "" V 1230 1200 50  0001 C CNN
+F 3 "~" H 1300 1200 50  0001 C CNN
+	1    1300 1200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1250 950  1300 950 
+Wire Wire Line
+	1300 950  1300 1050
+$Comp
+L Device:C C?
+U 1 1 5D4B6FCC
+P 1550 1500
+F 0 "C?" H 1665 1546 50  0000 L CNN
+F 1 "10nF" H 1665 1455 50  0000 L CNN
+F 2 "" H 1588 1350 50  0001 C CNN
+F 3 "~" H 1550 1500 50  0001 C CNN
+	1    1550 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5D4B7045
+P 1950 1350
+F 0 "R?" V 1743 1350 50  0000 C CNN
+F 1 "1k" V 1834 1350 50  0000 C CNN
+F 2 "" V 1880 1350 50  0001 C CNN
+F 3 "~" H 1950 1350 50  0001 C CNN
+	1    1950 1350
+	0    1    1    0   
+$EndComp
+Text GLabel 2250 1350 2    50   Input ~ 0
+SWITCH_1
+Wire Wire Line
+	1300 1350 1550 1350
+Wire Wire Line
+	1550 1350 1800 1350
+Connection ~ 1550 1350
+Wire Wire Line
+	2100 1350 2250 1350
+$Comp
+L power:GND #PWR?
+U 1 1 5D4B716C
+P 1550 1750
+F 0 "#PWR?" H 1550 1500 50  0001 C CNN
+F 1 "GND" H 1555 1577 50  0000 C CNN
+F 2 "" H 1550 1750 50  0001 C CNN
+F 3 "" H 1550 1750 50  0001 C CNN
+	1    1550 1750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1550 1750 1550 1650
+$Comp
+L power:GND #PWR?
+U 1 1 5D4B71F4
+P 1050 1500
+F 0 "#PWR?" H 1050 1250 50  0001 C CNN
+F 1 "GND" H 1055 1327 50  0000 C CNN
+F 2 "" H 1050 1500 50  0001 C CNN
+F 3 "" H 1050 1500 50  0001 C CNN
+	1    1050 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Screw_Terminal_01x02 J?
+U 1 1 5D4B74D7
+P 850 1450
+F 0 "J?" H 770 1217 50  0000 C CNN
+F 1 "Screw_Terminal_01x02" H 770 1216 50  0001 C CNN
+F 2 "" H 850 1450 50  0001 C CNN
+F 3 "~" H 850 1450 50  0001 C CNN
+	1    850  1450
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1050 1350 1300 1350
+Connection ~ 1300 1350
+Wire Wire Line
+	1050 1450 1050 1500
+Text Notes 1050 750  0    100  ~ 0
+Mechanical Deployment Detection Switches
+Text GLabel 1250 2200 0    50   Input ~ 0
++3.3v
+$Comp
+L Device:R R?
+U 1 1 5D4B778D
+P 1300 2450
+F 0 "R?" H 1370 2496 50  0000 L CNN
+F 1 "10k" H 1370 2405 50  0000 L CNN
+F 2 "" V 1230 2450 50  0001 C CNN
+F 3 "~" H 1300 2450 50  0001 C CNN
+	1    1300 2450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1250 2200 1300 2200
+Wire Wire Line
+	1300 2200 1300 2300
+$Comp
+L Device:C C?
+U 1 1 5D4B7796
+P 1550 2750
+F 0 "C?" H 1665 2796 50  0000 L CNN
+F 1 "10nF" H 1665 2705 50  0000 L CNN
+F 2 "" H 1588 2600 50  0001 C CNN
+F 3 "~" H 1550 2750 50  0001 C CNN
+	1    1550 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5D4B779D
+P 1950 2600
+F 0 "R?" V 1743 2600 50  0000 C CNN
+F 1 "1k" V 1834 2600 50  0000 C CNN
+F 2 "" V 1880 2600 50  0001 C CNN
+F 3 "~" H 1950 2600 50  0001 C CNN
+	1    1950 2600
+	0    1    1    0   
+$EndComp
+Text GLabel 2250 2600 2    50   Input ~ 0
+SWITCH_4
+Wire Wire Line
+	1300 2600 1550 2600
+Wire Wire Line
+	1550 2600 1800 2600
+Connection ~ 1550 2600
+Wire Wire Line
+	2100 2600 2250 2600
+$Comp
+L power:GND #PWR?
+U 1 1 5D4B77A9
+P 1550 3000
+F 0 "#PWR?" H 1550 2750 50  0001 C CNN
+F 1 "GND" H 1555 2827 50  0000 C CNN
+F 2 "" H 1550 3000 50  0001 C CNN
+F 3 "" H 1550 3000 50  0001 C CNN
+	1    1550 3000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1550 3000 1550 2900
+$Comp
+L power:GND #PWR?
+U 1 1 5D4B77B0
+P 1050 2750
+F 0 "#PWR?" H 1050 2500 50  0001 C CNN
+F 1 "GND" H 1055 2577 50  0000 C CNN
+F 2 "" H 1050 2750 50  0001 C CNN
+F 3 "" H 1050 2750 50  0001 C CNN
+	1    1050 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Screw_Terminal_01x02 J?
+U 1 1 5D4B77B6
+P 850 2700
+F 0 "J?" H 770 2467 50  0000 C CNN
+F 1 "Screw_Terminal_01x02" H 770 2466 50  0001 C CNN
+F 2 "" H 850 2700 50  0001 C CNN
+F 3 "~" H 850 2700 50  0001 C CNN
+	1    850  2700
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1050 2600 1300 2600
+Connection ~ 1300 2600
+Wire Wire Line
+	1050 2700 1050 2750
+Text GLabel 3400 950  0    50   Input ~ 0
++3.3v
+$Comp
+L Device:R R?
+U 1 1 5D4B7BFE
+P 3450 1200
+F 0 "R?" H 3520 1246 50  0000 L CNN
+F 1 "10k" H 3520 1155 50  0000 L CNN
+F 2 "" V 3380 1200 50  0001 C CNN
+F 3 "~" H 3450 1200 50  0001 C CNN
+	1    3450 1200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3400 950  3450 950 
+Wire Wire Line
+	3450 950  3450 1050
+$Comp
+L Device:C C?
+U 1 1 5D4B7C07
+P 3700 1500
+F 0 "C?" H 3815 1546 50  0000 L CNN
+F 1 "10nF" H 3815 1455 50  0000 L CNN
+F 2 "" H 3738 1350 50  0001 C CNN
+F 3 "~" H 3700 1500 50  0001 C CNN
+	1    3700 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5D4B7C0E
+P 4100 1350
+F 0 "R?" V 3893 1350 50  0000 C CNN
+F 1 "1k" V 3984 1350 50  0000 C CNN
+F 2 "" V 4030 1350 50  0001 C CNN
+F 3 "~" H 4100 1350 50  0001 C CNN
+	1    4100 1350
+	0    1    1    0   
+$EndComp
+Text GLabel 4400 1350 2    50   Input ~ 0
+SWITCH_2
+Wire Wire Line
+	3450 1350 3700 1350
+Wire Wire Line
+	3700 1350 3950 1350
+Connection ~ 3700 1350
+Wire Wire Line
+	4250 1350 4400 1350
+$Comp
+L power:GND #PWR?
+U 1 1 5D4B7C1A
+P 3700 1750
+F 0 "#PWR?" H 3700 1500 50  0001 C CNN
+F 1 "GND" H 3705 1577 50  0000 C CNN
+F 2 "" H 3700 1750 50  0001 C CNN
+F 3 "" H 3700 1750 50  0001 C CNN
+	1    3700 1750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3700 1750 3700 1650
+$Comp
+L power:GND #PWR?
+U 1 1 5D4B7C21
+P 3200 1500
+F 0 "#PWR?" H 3200 1250 50  0001 C CNN
+F 1 "GND" H 3205 1327 50  0000 C CNN
+F 2 "" H 3200 1500 50  0001 C CNN
+F 3 "" H 3200 1500 50  0001 C CNN
+	1    3200 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Screw_Terminal_01x02 J?
+U 1 1 5D4B7C27
+P 3000 1450
+F 0 "J?" H 2920 1217 50  0000 C CNN
+F 1 "Screw_Terminal_01x02" H 2920 1216 50  0001 C CNN
+F 2 "" H 3000 1450 50  0001 C CNN
+F 3 "~" H 3000 1450 50  0001 C CNN
+	1    3000 1450
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	3200 1350 3450 1350
+Connection ~ 3450 1350
+Wire Wire Line
+	3200 1450 3200 1500
+Text GLabel 3400 2200 0    50   Input ~ 0
++3.3v
+$Comp
+L Device:R R?
+U 1 1 5D4B7C32
+P 3450 2450
+F 0 "R?" H 3520 2496 50  0000 L CNN
+F 1 "10k" H 3520 2405 50  0000 L CNN
+F 2 "" V 3380 2450 50  0001 C CNN
+F 3 "~" H 3450 2450 50  0001 C CNN
+	1    3450 2450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3400 2200 3450 2200
+Wire Wire Line
+	3450 2200 3450 2300
+$Comp
+L Device:C C?
+U 1 1 5D4B7C3B
+P 3700 2750
+F 0 "C?" H 3815 2796 50  0000 L CNN
+F 1 "10nF" H 3815 2705 50  0000 L CNN
+F 2 "" H 3738 2600 50  0001 C CNN
+F 3 "~" H 3700 2750 50  0001 C CNN
+	1    3700 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5D4B7C42
+P 4100 2600
+F 0 "R?" V 3893 2600 50  0000 C CNN
+F 1 "1k" V 3984 2600 50  0000 C CNN
+F 2 "" V 4030 2600 50  0001 C CNN
+F 3 "~" H 4100 2600 50  0001 C CNN
+	1    4100 2600
+	0    1    1    0   
+$EndComp
+Text GLabel 4400 2600 2    50   Input ~ 0
+SWITCH_3
+Wire Wire Line
+	3450 2600 3700 2600
+Wire Wire Line
+	3700 2600 3950 2600
+Connection ~ 3700 2600
+Wire Wire Line
+	4250 2600 4400 2600
+$Comp
+L power:GND #PWR?
+U 1 1 5D4B7C4E
+P 3700 3000
+F 0 "#PWR?" H 3700 2750 50  0001 C CNN
+F 1 "GND" H 3705 2827 50  0000 C CNN
+F 2 "" H 3700 3000 50  0001 C CNN
+F 3 "" H 3700 3000 50  0001 C CNN
+	1    3700 3000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3700 3000 3700 2900
+$Comp
+L power:GND #PWR?
+U 1 1 5D4B7C55
+P 3200 2750
+F 0 "#PWR?" H 3200 2500 50  0001 C CNN
+F 1 "GND" H 3205 2577 50  0000 C CNN
+F 2 "" H 3200 2750 50  0001 C CNN
+F 3 "" H 3200 2750 50  0001 C CNN
+	1    3200 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Screw_Terminal_01x02 J?
+U 1 1 5D4B7C5B
+P 3000 2700
+F 0 "J?" H 2920 2467 50  0000 C CNN
+F 1 "Screw_Terminal_01x02" H 2920 2466 50  0001 C CNN
+F 2 "" H 3000 2700 50  0001 C CNN
+F 3 "~" H 3000 2700 50  0001 C CNN
+	1    3000 2700
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	3200 2600 3450 2600
+Connection ~ 3450 2600
+Wire Wire Line
+	3200 2700 3200 2750
+Wire Notes Line
+	600  550  600  3350
+Wire Notes Line
+	600  3350 5000 3350
+Wire Notes Line
+	5000 3350 5000 550 
+Wire Notes Line
+	5000 550  600  550 
+$EndSCHEMATC
