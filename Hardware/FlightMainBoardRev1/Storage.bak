@@ -1,0 +1,70 @@
+EESchema Schematic File Version 4
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Connector:Micro_SD_Card J?
+U 1 1 5D4B7154
+P 1750 1700
+F 0 "J?" H 1700 883 50  0000 C CNN
+F 1 "Micro_SD_Card" H 1700 974 50  0000 C CNN
+F 2 "" H 2900 2000 50  0001 C CNN
+F 3 "http://katalog.we-online.de/em/datasheet/693072010801.pdf" H 1750 1700 50  0001 C CNN
+	1    1750 1700
+	-1   0    0    1   
+$EndComp
+Text Notes 1400 800  0    100  ~ 0
+Micro SD Storage
+Text GLabel 2800 1900 2    50   Input ~ 0
+SD_CS
+Text GLabel 2800 1800 2    50   Input ~ 0
+SD_MOSI
+Wire Wire Line
+	2650 1900 2800 1900
+Wire Wire Line
+	2650 1800 2800 1800
+Text GLabel 2800 1600 2    50   Input ~ 0
+SD_SCLK
+Text GLabel 2800 1400 2    50   Input ~ 0
+SD_MISO
+Wire Wire Line
+	2650 1400 2800 1400
+Wire Wire Line
+	2650 1600 2800 1600
+Text GLabel 2800 1700 2    50   Input ~ 0
++3.3v
+Wire Wire Line
+	2650 1700 2800 1700
+$Comp
+L power:GND #PWR?
+U 1 1 5D4B7356
+P 2800 1500
+F 0 "#PWR?" H 2800 1250 50  0001 C CNN
+F 1 "GND" V 2805 1372 50  0000 R CNN
+F 2 "" H 2800 1500 50  0001 C CNN
+F 3 "" H 2800 1500 50  0001 C CNN
+	1    2800 1500
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	2650 1500 2800 1500
+Wire Notes Line
+	650  600  650  2500
+Wire Notes Line
+	650  2500 3450 2500
+Wire Notes Line
+	3450 2500 3450 600 
+Wire Notes Line
+	3450 600  650  600 
+$EndSCHEMATC

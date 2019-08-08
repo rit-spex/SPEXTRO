@@ -13,10 +13,4 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-$Sheet
-S 9200 800  1650 200 
-U 5D4B7B7F
-F0 "Communications" 50
-F1 "Communications.sch" 50
-$EndSheet
 $EndSCHEMATC
