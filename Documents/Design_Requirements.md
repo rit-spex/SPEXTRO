@@ -106,7 +106,7 @@ Continued...
 ---
 
 ### Software
-* Flight: FreeRTOS
+* Flight: PsyCron
 * GND Station: Linux
 
 ---
