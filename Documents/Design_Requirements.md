@@ -38,6 +38,11 @@
 * Physical switch to enable power
 * Physical switch does not disable power (MCU takes over)
 * High efficiency is desireable for runtime
+* Tether support
+   * Charge batteries from outside connector
+   * Monitor battery pack
+   * Active balance battery pack
+   * Generate a clean 12V from battery pack to send to system
 
 ---
 ### Communication
@@ -124,6 +129,7 @@ Continued...
 * Components easily mountable inside
 * Access internals with minimal effort
     * Hinged side panels???
+* Access to programming, data, and charging while payload is assembled (tether)
 * Antennas not too close to metal frame
     * Would like an RF analysis here to prove out
 * GPS antenna facing upward
