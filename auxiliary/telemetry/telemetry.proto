@@ -14,7 +14,7 @@ message Telemetry {
         uint32 sent_time_s = 1;
     }
 
-    message Atltitude {
+    message Altitude {
         // Altitude is in meters
         float altitude_from_sea_level_m = 1;
         float relative_atltitude_m = 2;
