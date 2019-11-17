@@ -1,15 +1,17 @@
-/*
- * Google Protobuf proto file for SPEXTRO telemetry
- * Orginization: RIT Space Exploration
+/* Google Protobuf proto file for SPEXTRO telemetry
+ * Orginization: RIT Space 
+ * Author: Dylan R. Wagner (drw6528@rit.edu)
  */
 
 message Header {
-    required uint32 sent_time = 1;
+    // sent_time is time from system initialization in seconds
+    required uint32 sent_time_s = 1;
 }
 
 message Atltitude {
     // Altitude is in meters
-    required float atltitude_m = 1;
+    required float altitude_from_sea_level_m = 1;
+    required float relative_atltitude_m = 2;
 }
 
 message Environmental {
@@ -26,13 +28,96 @@ message Orentation {
     required int32 d = 4;
 }
 
+message GPSPosition {
+    // Using Decimal Degrees
+    required float latitude = 1;
+    required float longitude = 2;
+    required float altitude_m = 3;
+}
+
+message SciencePayload {
+    // data is science sensor samples from time_start to time_end
+    repeated uint32 data = 1;
+    required uint32 time_start = 2;
+    required uint32 time_end = 3;
+}
+
+message IMU {
+    required int32 accel_x = 1;
+    required int32 accel_y = 2;
+    required int32 accel_z = 3;
+    required int32 gyro_x = 4;
+    required int32 gyro_y = 5;
+    required int32 gyro_z = 6;
+    required int32 mag_x = 7;
+    required int32 mag_y = 8;
+    required int32 mag_z = 9;
+}
+
+message DeploymentSwitchERROR {
+    enum SwitchUnit {
+        UNIT_1 = 0;
+        UNIT_2 = 1;
+        UNIT_3 = 2;
+        UNIT_4 = 3;
+    }
+    required SwitchUnit unit = 1;
+    // Switch status 0 - closed, 1 - open
+    required char switch_status = 2;
+}
+
+message PowerERROR {
+    enum PowerUnit {
+        UNIT_1 = 0;
+        UNIT_2 = 1;
+    }
+    required PowerUnit unit = 1;
+}
+
+message StorageERROR {
+    // Failed to store data, with functioning storage
+    required char failed = 1;
+}
+
+message HardwareERROR {
+    enum HardwareUnit {
+        XBEE_TRANSCEIVER = 0;
+        BOSCH_BNO055_IMU = 1;
+        BOSCH_BME680 = 2;
+        UBLOX_MAX_M8Q = 3;
+        SD_CARD = 4;
+        // TODO add more
+    }
+    required HardwareUnit unit = 1;
+}
+
+message SystemHealth {
+    // Percentage of charge left
+    required uint32 battery_charge_1 = 1;
+    required uint32 battery_charge_2 = 2;
+    // 0 - unarmed, 1 - armed/flight ready, 2 - unarmed/recovery
+    required char system_phase = 7;
+
+    required char launch_detected = 8;
+    required char deploy_detected = 9;
+    required char parachute_deployed = 10;
+}
+
 message Telemetry {
     
     required Header header = 1;
     
     oneof data {
-        Altitude altitude = 1;
-        Orentation orentation = 2;
-        Environmental environmental = 6;
+        Altitude altitude = 2;
+        Orentation orentation = 3;
+        SciencePayload science_payload = 4;
+        Environmental environmental = 5;
+        GPSPosition position = 6;
+        IMU imu = 7;
+        // Error messages
+        DeploymentSwitchERROR switch_error = 10;
+        PowerERROR power_error = 11;
+        StorageERROR storage_error = 12;
+        HardwareERROR hardware_error = 13;
     }
 }
