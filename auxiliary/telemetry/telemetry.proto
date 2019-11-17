@@ -1,0 +1,38 @@
+/*
+ * Google Protobuf proto file for SPEXTRO telemetry
+ * Orginization: RIT Space Exploration
+ */
+
+message Header {
+    required uint32 sent_time = 1;
+}
+
+message Atltitude {
+    // Altitude is in meters
+    required float atltitude_m = 1;
+}
+
+message Environmental {
+    required int32 temperature_degC = 1;
+    required uint32 pressure = 2;
+    required uint32 humidity = 3; 
+}
+
+message Orentation {
+    // Quaternion holding absolute orentation
+    required int32 a = 1;
+    required int32 b = 2;
+    required int32 c = 3;
+    required int32 d = 4;
+}
+
+message Telemetry {
+    
+    required Header header = 1;
+    
+    oneof data {
+        Altitude altitude = 1;
+        Orentation orentation = 2;
+        Environmental environmental = 6;
+    }
+}
