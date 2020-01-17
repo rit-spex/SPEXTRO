@@ -30,14 +30,62 @@ struct sensor_bme680{
     uint32_t humidity_rel;
 };
 
+struct sensor_bno055_accel{
+    // mps is meters per second squared
+    int16_t accel_x_mpss;
+    int16_t accel_y_mpss;
+    int16_t accel_z_mpss;
+};
+
+struct sensor_bno055_gyro{
+    // dps is degrees per second
+    int16_t gyro_x_dps;
+    int16_t gyro_y_dps;
+    int16_t gyro_z_dps;
+};
+
+struct sensor_bno055_mag{
+    // uT is micro Tesla
+    int16_t mag_x_uT;
+    int16_t mag_y_uT;
+    int16_t mag_z_uT;
+};
+
+struct gps_position{
+    float latitude;
+    float longitude;
+};
+
+struct quaternion{
+    int16_t a;
+    int16_t b;
+    int16_t c;
+    int16_t d;
+};
+
+enum flight_phase{
+    STANDBY = 0,
+    LAUNCH_READY = 1,
+    LAUNCHED = 2,
+    PAYLOAD_DEPLOYED = 3,
+    PARACHUTE_DEPLOYED = 4,
+    RECOVERY = 5
+};
+
 struct payload_data{
+    data_point<flight_phase> system_phase;
     data_point<float> altitude_meters;
     data_point<float> sea_level_altitude_meters;
+    data_point<quaternion> abs_orentation;
+    data_point<gps_position> gps_position;
     // Add more...
 };
 
 struct raw_sensor_data{
     data_point<sensor_bme680> bme680;
+    data_point<sensor_bno055_accel> bno055_accel;
+    data_point<sensor_bno055_gyro> bno055_gyro;
+    data_point<sensor_bno055_mag> bno055_mag;
     // Add more...
 };
 

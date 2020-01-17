@@ -38,7 +38,6 @@ message Telemetry {
         // Using Decimal Degrees
         float latitude = 1;
         float longitude = 2;
-        float altitude_m = 3;
     }
 
     message SciencePayload {
@@ -58,6 +57,25 @@ message Telemetry {
         int32 mag_x = 7;
         int32 mag_y = 8;
         int32 mag_z = 9;
+    }
+
+    message SystemHealth {
+        // Percentage of charge left
+        uint32 battery_charge_1 = 1;
+        uint32 battery_charge_2 = 2;
+    }
+
+    message SystemPhase {
+        enum FlightPhase {
+            STANDBY = 0,
+            LAUNCH_READY = 1,
+            LAUNCHED = 2,
+            PAYLOAD_DEPLOYED = 3,
+            PARACHUTE_DEPLOYED = 4,
+            RECOVERY = 5
+        }
+
+        FlightPhase phase = 3;
     }
 
     message DeploymentSwitchERROR {
@@ -95,18 +113,6 @@ message Telemetry {
         }
         HardwareUnit unit = 1;
     }
-
-    message SystemHealth {
-        // Percentage of charge left
-        uint32 battery_charge_1 = 1;
-        uint32 battery_charge_2 = 2;
-        // 0 - unarmed, 1 - armed/flight ready, 2 - unarmed/recovery
-        uint32 system_phase = 7;
-
-        bool launch_detected = 8;
-        bool deploy_detected = 9;
-        bool parachute_deployed = 10;
-    }
     
     Header header = 1;
     
@@ -117,6 +123,7 @@ message Telemetry {
         Environmental environmental = 5;
         GPSPosition position = 6;
         IMU imu = 7;
+        SystemPhase system_phase = 8;
         // Error messages
         DeploymentSwitchERROR switch_error = 10;
         PowerERROR power_error = 11;
