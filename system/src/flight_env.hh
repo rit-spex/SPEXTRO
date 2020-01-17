@@ -18,6 +18,10 @@ public:
         return m_data;
     }
 
+    bool is_vaild(){
+        return m_valid;
+    }
+
 private:
     uint32_t m_time_updated;
     T m_data;
