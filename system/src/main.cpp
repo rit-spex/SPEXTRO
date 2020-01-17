@@ -12,6 +12,7 @@
 
 #include "routines/routines.hh"
 #include "flight_env.hh"
+#include "routine_ids.hh"
 
 typedef psycron::PsyTrack<flight_env>::PriorityRoutineArgs SPEXTROPriorityRoutineArgs;
 typedef psycron::PsyTrack<flight_env>::TimedRoutineArgs SPEXTROTimedRoutineArgs;
@@ -27,6 +28,6 @@ int main(){
     psycron_ins.add_application(
         0,
         flight_data,
-        SPEXTROTimedRoutineArgs{new mHeartbeat<flight_env>{}, uint16_t{1}, 1000}
+        SPEXTROTimedRoutineArgs{new mHeartbeat<flight_env>{}, mHEARTBEAT_ID, 1000}
     );
 }

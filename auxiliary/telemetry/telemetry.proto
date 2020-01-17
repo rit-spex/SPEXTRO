@@ -17,7 +17,7 @@ message Telemetry {
     message Altitude {
         // Altitude is in meters
         float altitude_from_sea_level_m = 1;
-        float relative_atltitude_m = 2;
+        float relative_attitude_m = 2;
     }
 
     message Environmental {
@@ -26,8 +26,8 @@ message Telemetry {
         uint32 humidity = 3; 
     }
 
-    message Orentation {
-        // Quaternion holding absolute orentation
+    message Orientation {
+        // Quaternion holding absolute orientation
         int32 a = 1;
         int32 b = 2;
         int32 c = 3;
@@ -112,7 +112,7 @@ message Telemetry {
     
     oneof data {
         Altitude altitude = 2;
-        Orentation orentation = 3;
+        Orientation orientation = 3;
         SciencePayload science_payload = 4;
         Environmental environmental = 5;
         GPSPosition position = 6;
