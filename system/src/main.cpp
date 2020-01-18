@@ -17,9 +17,19 @@
 typedef psycron::PsyTrack<flight_env>::PriorityRoutineArgs SPEXTROPriorityRoutineArgs;
 typedef psycron::PsyTrack<flight_env>::TimedRoutineArgs SPEXTROTimedRoutineArgs;
 
-int main(){
+void setup(){
+    Serial.begin(9600);
+}
+
+void print_msg(char* msg){
+    Serial.println(msg);
+}
+
+// loop doesn't actually loop
+void loop(){
     psycron::UIIL config{};
     config.sys_milli_second = millis;
+    config.sys_send_msg = print_msg;
 
     psycron::PsyCron psycron_ins(config, 1);
 
@@ -30,4 +40,7 @@ int main(){
         flight_data,
         SPEXTROTimedRoutineArgs{new mHeartbeat<flight_env>{}, mHEARTBEAT_ID, 1000}
     );
+
+    // Blocking call
+    psycron_ins.start();
 }

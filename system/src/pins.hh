@@ -2,4 +2,4 @@
 
 // #TODO fix these pins
 
-#define PIN_HEARTBEAT_LED 9999
+#define PIN_HEARTBEAT_LED LED_BUILTIN
