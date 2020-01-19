@@ -47,16 +47,10 @@ message Telemetry {
         uint32 time_end = 3;
     }
 
-    message IMU {
+    message Acceleration {
         int32 accel_x = 1;
         int32 accel_y = 2;
         int32 accel_z = 3;
-        int32 gyro_x = 4;
-        int32 gyro_y = 5;
-        int32 gyro_z = 6;
-        int32 mag_x = 7;
-        int32 mag_y = 8;
-        int32 mag_z = 9;
     }
 
     message SystemHealth {
@@ -122,7 +116,7 @@ message Telemetry {
         SciencePayload science_payload = 4;
         Environmental environmental = 5;
         GPSPosition position = 6;
-        IMU imu = 7;
+        Acceleration accel = 7;
         SystemPhase system_phase = 8;
         // Error messages
         DeploymentSwitchERROR switch_error = 10;

@@ -38,7 +38,8 @@ void loop(){
     psycron_ins.add_application(
         0,
         flight_data,
-        SPEXTROTimedRoutineArgs{new mHeartbeat<flight_env>{}, mHEARTBEAT_ID, 1000}
+        SPEXTROTimedRoutineArgs{new mHeartbeat<flight_env>{}, mHEARTBEAT_ID, 1000},
+        SPEXTROPriorityRoutineArgs{new hBNO055<flight_env>{}, hBNO055_ID, 1}
     );
 
     // Blocking call

@@ -41,20 +41,6 @@ struct sensor_bno055_accel{
     int16_t accel_z_mpss;
 };
 
-struct sensor_bno055_gyro{
-    // dps is degrees per second
-    int16_t gyro_x_dps;
-    int16_t gyro_y_dps;
-    int16_t gyro_z_dps;
-};
-
-struct sensor_bno055_mag{
-    // uT is micro Tesla
-    int16_t mag_x_uT;
-    int16_t mag_y_uT;
-    int16_t mag_z_uT;
-};
-
 struct gps_position{
     float latitude;
     float longitude;
@@ -88,8 +74,6 @@ struct payload_data{
 struct raw_sensor_data{
     data_point<sensor_bme680> bme680;
     data_point<sensor_bno055_accel> bno055_accel;
-    data_point<sensor_bno055_gyro> bno055_gyro;
-    data_point<sensor_bno055_mag> bno055_mag;
     // Add more...
 };
 
