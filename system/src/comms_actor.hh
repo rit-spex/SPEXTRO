@@ -62,11 +62,11 @@ private:
      */
     void receive_handler(bool block_for_tansmit_status = false);
 
-    bool initalized{false};
+    bool m_initalized{false};
 
     bool m_packet_data_loaded{true};
-    uint8_t load_buffer[UINT8_MAX] = {0};
+    uint8_t m_load_buffer[UINT8_MAX] = {0};
 
-    XBee xbee{};
-    XBeeAddress64 addr64_ground{XBEE_ADDR_GROUND_HI, XBEE_ADDR_GROUND_LOW};
+    XBee m_xbee{};
+    XBeeAddress64 m_addr_ground{XBEE_ADDR_GROUND_HI, XBEE_ADDR_GROUND_LOW};
 };

@@ -9,6 +9,12 @@
 template <typename EnvType>
 class mCommsDirector : public psycron::TimedRoutine<EnvType>
 {
+public:
+
+    void init(){
+        this->_get_envrionment().comms_actor.init();
+    }
+
 private:
 
     void run(){
