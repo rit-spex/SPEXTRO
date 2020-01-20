@@ -18,6 +18,6 @@ public:
 private:
 
     void run(){
-        // @TODO
+        this->_get_envrionment().comms_actor.perform();
     }
 };
