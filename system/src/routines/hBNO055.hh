@@ -9,7 +9,7 @@
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BNO055.h>
 
-#include "pins.hh"
+#include "config_defines.hh"
 
 template <typename EnvType>
 class hBNO055 : public psycron::PriorityRoutine<EnvType>

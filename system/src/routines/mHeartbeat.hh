@@ -6,7 +6,7 @@
 //      Routine used to toggle the heartbeat.
 //
 
-#include "pins.hh"
+#include "config_defines.hh"
 
 template <typename EnvType>
 class mHeartbeat : public psycron::TimedRoutine<EnvType>

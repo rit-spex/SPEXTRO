@@ -1,6 +1,8 @@
 
 #pragma once
 
+#include "comms_actor.hh"
+
 template<typename T>
 struct data_point{
 public:
@@ -66,18 +68,19 @@ struct payload_data{
     data_point<flight_phase> system_phase;
     data_point<float> altitude_meters;
     data_point<float> sea_level_altitude_meters;
-    data_point<quaternion> abs_orentation;
-    data_point<gps_position> gps_position;
+    data_point<struct quaternion> abs_orentation;
+    data_point<struct gps_position> gps_position;
     // Add more...
 };
 
 struct raw_sensor_data{
-    data_point<sensor_bme680> bme680;
-    data_point<sensor_bno055_accel> bno055_accel;
+    data_point<struct sensor_bme680> bme680;
+    data_point<struct sensor_bno055_accel> bno055_accel;
     // Add more...
 };
 
 struct flight_env{
+    CommsActor comms_actor{};
     payload_data payload_params;
     raw_sensor_data raw_sensor_params;
 };
