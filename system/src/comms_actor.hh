@@ -31,7 +31,7 @@ public:
      * @param data_size Size of the data to be copied.
      * @return True if data can be loaded, false otherwise.
      */
-    bool load_data(uint8_t* data, uint8_t data_size);
+    bool load_data(const uint8_t* data, const uint8_t data_size);
 
     /**
      * Used to send the data blocking, bypassing the communications director. 
@@ -40,10 +40,10 @@ public:
      * @param data_size Size of the data to be copied.
      * @return True if data was sent, false otherwise.
      */
-    bool send_blocking(uint8_t* data, uint8_t data_size);
+    bool send_blocking(const uint8_t* data, const uint8_t data_size);
 
     /**
-     * Used to perform state resolution logic, directed by the communications 
+     * Used to perform state resolution logic, called by the communications 
      * director.
      */
     void perform();
