@@ -72,7 +72,7 @@ private:
 
     bool m_initalized{false};
 
-    bool m_packet_data_loaded{true};
+    bool m_packet_data_loaded{false};
     bool m_packet_transmitting{false};
 
     uint8_t m_load_buffer[UINT8_MAX] = {0};
