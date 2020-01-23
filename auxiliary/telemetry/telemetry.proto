@@ -55,8 +55,8 @@ message Telemetry {
 
     message SystemHealth {
         // Percentage of charge left
-        uint32 battery_charge_1 = 1;
-        uint32 battery_charge_2 = 2;
+        uint32 battery_voltage_1 = 1;
+        uint32 battery_voltage_2 = 2;
     }
 
     message SystemPhase {
