@@ -12,6 +12,8 @@
 
 #include "config_defines.hh"
 
+#define FAILOVER_TIMEOUT 500 // in ms
+
 class CommsActor{
 public:
 
@@ -74,6 +76,7 @@ private:
 
     bool m_packet_data_loaded{false};
     bool m_packet_transmitting{false};
+    uint16_t m_fail_count{0};
 
     uint8_t m_load_buffer[UINT8_MAX] = {0};
     uint8_t m_buffer_size{0};

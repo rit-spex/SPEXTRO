@@ -23,7 +23,7 @@ bool CommsActor::receive_handler(bool block_for_tansmit_status){
     do {
 
         if(block_for_tansmit_status){
-            if(!m_xbee.readPacket(500)){
+            if(!m_xbee.readPacket(FAILOVER_TIMEOUT)){
                 // Really bad, just bail out
                 m_packet_transmitting = false;
                 return false;
@@ -31,7 +31,17 @@ bool CommsActor::receive_handler(bool block_for_tansmit_status){
         } else {
             m_xbee.readPacket();
             // (TRUE) Didn't catch anything this time, it's okay
-            if(!m_xbee.getResponse().isAvailable()) continue;
+            if(!m_xbee.getResponse().isAvailable()){
+                m_fail_count++;
+                // This is also really bad if true, just set state to allow sends
+                if(m_fail_count > (uint16_t) FAILOVER_TIMEOUT/mCOMMDIRECTOR_DELAY){
+                    m_packet_transmitting = false;
+                    m_fail_count = 0;
+                }
+                continue;
+            }
+
+            m_fail_count = 0;
         }
 
         switch (m_xbee.getResponse().getApiId()) {
