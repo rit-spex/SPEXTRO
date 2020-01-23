@@ -61,12 +61,12 @@ message Telemetry {
 
     message SystemPhase {
         enum FlightPhase {
-            STANDBY = 0,
-            LAUNCH_READY = 1,
-            LAUNCHED = 2,
-            PAYLOAD_DEPLOYED = 3,
-            PARACHUTE_DEPLOYED = 4,
-            RECOVERY = 5
+            STANDBY = 0;
+            LAUNCH_READY = 1;
+            LAUNCHED = 2;
+            PAYLOAD_DEPLOYED = 3;
+            PARACHUTE_DEPLOYED = 4;
+            RECOVERY = 5;
         }
 
         FlightPhase phase = 3;

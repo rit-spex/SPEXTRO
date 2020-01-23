@@ -6,6 +6,10 @@
 //      Routine used to direct the communications actor.
 //
 
+#pragma once
+
+#include "telemetry_dispatcher.hh"
+
 template <typename EnvType>
 class mCommsDirector : public psycron::TimedRoutine<EnvType>
 {
