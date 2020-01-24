@@ -16,7 +16,7 @@ enum message_type{
     orientation,
     environmental,
     position,
-    accel,
+    acceleration,
     system_phase
 };
 
@@ -49,7 +49,63 @@ struct repeat_message{
 };
 
 class TelemetryDispatcher{
+public:
+    
+    /**
+     * Dispatches telemetry according to the state machine. Serialized messages are
+     * placed in the work buffer to be passed on later.
+     * 
+     * @param env The envrionment which contains all the data needed to send relevent telemetry.
+     */
+    void dispatch_telemetry(const struct flight_env& env);
 
+private:
+
+    /**
+     * Serializes altitude data using Google protocol buffers.
+     * 
+     * @param env The flight env used to store the altitude data.
+     * @return size of the serialized message.
+     */
+    uint8_t serialize_altitude(const struct flight_env& env);
+
+    /**
+     * Serializes orientation data using Google protocol buffers.
+     * 
+     * @param env The flight env used to store the orientation data.
+     * @return size of the serialized message.
+     */
+    uint8_t serialize_orientation(const struct flight_env& env);
+
+    /**
+     * Serializes acceleration data using Google protocol buffers.
+     * 
+     * @param env The flight env used to store the acceleration data.
+     * @return size of the serialized message.
+     */
+    uint8_t serialize_acceleration(const struct flight_env& env);
+
+    /**
+     * Serializes environmental data using Google protocol buffers.
+     * 
+     * @param env The flight env used to store the environmental data.
+     * @return size of the serialized message.
+     */
+    uint8_t serialize_environmental(const struct flight_env& env);
+
+    /**
+     * Serializes gps position data using Google protocol buffers.
+     * 
+     * @param env The flight env used to store the position data.
+     * @return size of the serialized message.
+     */
+    uint8_t serialize_position(const struct flight_env& env);
+
+
+    // Work buffer used to store the serialized packets
+    uint8_t m_work_buffer[UINT8_MAX] = {0};
+
+    uint8_t m_state_counter{0};
     // Holds the telemetry state machine 
-    static const repeat_message telemetry_machine[];
+    static repeat_message telemetry_machine[];
 };
