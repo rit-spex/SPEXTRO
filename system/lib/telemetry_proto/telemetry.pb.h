@@ -80,10 +80,10 @@ typedef struct _spextro_Telemetry_Header {
 } spextro_Telemetry_Header;
 
 typedef struct _spextro_Telemetry_Orientation {
-    int32_t a;
-    int32_t b;
-    int32_t c;
-    int32_t d;
+    int32_t a_comp;
+    int32_t b_comp;
+    int32_t c_comp;
+    int32_t d_comp;
 } spextro_Telemetry_Orientation;
 
 typedef struct _spextro_Telemetry_PowerERROR {
@@ -192,10 +192,10 @@ typedef struct _spextro_Telemetry {
 #define spextro_Telemetry_GPSPosition_longitude_tag 2
 #define spextro_Telemetry_HardwareERROR_unit_tag 1
 #define spextro_Telemetry_Header_sent_time_s_tag 1
-#define spextro_Telemetry_Orientation_a_tag      1
-#define spextro_Telemetry_Orientation_b_tag      2
-#define spextro_Telemetry_Orientation_c_tag      3
-#define spextro_Telemetry_Orientation_d_tag      4
+#define spextro_Telemetry_Orientation_a_comp_tag 1
+#define spextro_Telemetry_Orientation_b_comp_tag 2
+#define spextro_Telemetry_Orientation_c_comp_tag 3
+#define spextro_Telemetry_Orientation_d_comp_tag 4
 #define spextro_Telemetry_PowerERROR_unit_tag    1
 #define spextro_Telemetry_SciencePayload_data_tag 1
 #define spextro_Telemetry_SciencePayload_time_start_tag 2
@@ -265,10 +265,10 @@ X(a, STATIC,   SINGULAR, UINT32,   humidity,          3)
 #define spextro_Telemetry_Environmental_DEFAULT NULL
 
 #define spextro_Telemetry_Orientation_FIELDLIST(X, a) \
-X(a, STATIC,   SINGULAR, INT32,    a,                 1) \
-X(a, STATIC,   SINGULAR, INT32,    b,                 2) \
-X(a, STATIC,   SINGULAR, INT32,    c,                 3) \
-X(a, STATIC,   SINGULAR, INT32,    d,                 4)
+X(a, STATIC,   SINGULAR, INT32,    a_comp,            1) \
+X(a, STATIC,   SINGULAR, INT32,    b_comp,            2) \
+X(a, STATIC,   SINGULAR, INT32,    c_comp,            3) \
+X(a, STATIC,   SINGULAR, INT32,    d_comp,            4)
 #define spextro_Telemetry_Orientation_CALLBACK NULL
 #define spextro_Telemetry_Orientation_DEFAULT NULL
 

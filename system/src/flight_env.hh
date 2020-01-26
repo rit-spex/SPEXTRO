@@ -12,11 +12,11 @@ public:
         m_valid = true;
     }
 
-    uint32_t get_time_updated(){
+    const uint32_t get_time_updated() const{
         return m_time_updated;
     }
 
-    T get_data(){
+    const T get_data() const{
         return m_data;
     }
 

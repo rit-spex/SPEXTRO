@@ -23,7 +23,7 @@ public:
      * 
      * @return True if data can be loaded, false otherwise.
      */
-    bool can_load_data();
+    const bool can_load_data() const;
 
     /**
      * Used to load data into the communication actor which is sent by 
@@ -33,7 +33,7 @@ public:
      * @param data_size Size of the data to be copied.
      * @return True if data can be loaded, false otherwise.
      */
-    bool load_data(const uint8_t* data, const uint8_t data_size);
+    const bool load_data(const uint8_t* data, const uint8_t data_size);
 
     /**
      * Used to send the data blocking, bypassing the communications director. 

@@ -23,7 +23,7 @@ private:
 
     void run(){
         this->_get_envrionment().comms_actor.perform();
-        telemetry_dispatcher.dispatch_telemetry(this->_get_envrionment());
+        telemetry_dispatcher.dispatch_telemetry(&this->_get_envrionment());
     }
 
     TelemetryDispatcher telemetry_dispatcher{};

@@ -28,10 +28,10 @@ message Telemetry {
 
     message Orientation {
         // Quaternion holding absolute orientation
-        int32 a = 1;
-        int32 b = 2;
-        int32 c = 3;
-        int32 d = 4;
+        int32 a_comp = 1;
+        int32 b_comp = 2;
+        int32 c_comp = 3;
+        int32 d_comp = 4;
     }
 
     message GPSPosition {
