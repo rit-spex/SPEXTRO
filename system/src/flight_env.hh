@@ -48,7 +48,7 @@ struct gps_position{
     float longitude;
 };
 
-struct quaternion{
+struct orientation{
     int16_t a;
     int16_t b;
     int16_t c;
@@ -68,7 +68,7 @@ struct payload_data{
     data_point<flight_phase> system_phase;
     data_point<float> altitude_meters;
     data_point<float> sea_level_altitude_meters;
-    data_point<struct quaternion> abs_orentation;
+    data_point<struct orientation> abs_orentation;
     data_point<struct gps_position> gps_position;
     // Add more...
 };
