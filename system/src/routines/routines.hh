@@ -1,5 +1,7 @@
 #pragma once
 
+#include "cMissionEvents.hh"
+
 #include "mHeartbeat.hh"
 #include "mCommsDirector.hh"
 
