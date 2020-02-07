@@ -2,6 +2,7 @@
 
 #define mHEARTBEAT_DELAY 1000
 #define mCOMMDIRECTOR_DELAY 10
+#define cMISSIONEVENTS_DELAY 20
 #define hBNO055_PRIORITY 1
 
 // @TODO Change these
@@ -14,3 +15,5 @@
 
 // #TODO fix these pins
 #define PIN_HEARTBEAT_LED LED_BUILTIN
+
+#define NOMINAL_PARACHUTE_DELAY 3000
