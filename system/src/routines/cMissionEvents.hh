@@ -30,11 +30,20 @@ public:
         pinMode(PIN_DEPLOY_03, INPUT);
         pinMode(PIN_DEPLOY_04, INPUT);
 
+        pinMode(PIN_PARACHUTE_ARM, OUTPUT);
+        pinMode(PIN_PARACHUTE_TRIGGER, OUTPUT);
+
+        digitalWrite(PIN_PARACHUTE_ARM, LOW);
+        digitalWrite(PIN_PARACHUTE_TRIGGER, LOW);
+
     }
 
 private:
 
     void check_respond_launch_detection(){
+        // Now deployed
+        if(m_is_deployed) return;
+        
         // Activate cSciencePayload
     }
 
@@ -75,10 +84,11 @@ private:
     }
 
     void check_respond_parachute_deployment(){
-        if(!m_is_deployed) return;
+        if(!m_is_deployed || m_is_parachute_deployed) return;
 
         if(m_time_deployed_ms + m_parachute_delay_ms >= millis()){
-            // @TODO add parachute trigger
+            // Trigger the parachute
+            digitalWrite(PIN_PARACHUTE_TRIGGER, HIGH);
             m_is_parachute_deployed = true;
         }
     }
