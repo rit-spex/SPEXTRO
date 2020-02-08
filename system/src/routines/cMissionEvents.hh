@@ -10,18 +10,80 @@
 
 #pragma once
 
+#include "config_defines.hh"
+
+#define SWITCH_QUERY_COUNT 20
+#define SWITCH_QUERY_THRESHOLD 15
+#define DEPLOYMET_CONFIRM 50
+
 template <typename EnvType>
 class cMissionEvents : public psycron::TimedRoutine<EnvType>
 {
+public:
+
+    void init(){
+
+        // Set mode for deployment switches
+        pinMode(PIN_DEPLOY_01, INPUT);
+        pinMode(PIN_DEPLOY_02, INPUT);
+        pinMode(PIN_DEPLOY_03, INPUT);
+        pinMode(PIN_DEPLOY_04, INPUT);
+
+    }
 
 private:
 
-    void check_respond_launch_detection();
+    void check_respond_launch_detection(){
 
-    void check_respond_deployment();
+    }
+
+    void check_respond_deployment(){
+        // Now deployed
+        if(m_is_deployed) return;
+
+        uint8_t switch_votes[4] = {0};
+
+        // Pull the state of deployment switches 
+        for(int switch_query = 0; switch_query < SWITCH_QUERY_COUNT; switch_query++){
+            switch_votes[0] += digitalRead(PIN_DEPLOY_01) == LOW ? 1 : 0;
+            switch_votes[1] += digitalRead(PIN_DEPLOY_02) == LOW ? 1 : 0;
+            switch_votes[2] += digitalRead(PIN_DEPLOY_03) == LOW ? 1 : 0;
+            switch_votes[3] += digitalRead(PIN_DEPLOY_04) == LOW ? 1 : 0;
+        }
+
+        uint8_t vote_accumilate{0};
+        vote_accumilate += switch_votes[0] >= SWITCH_QUERY_THRESHOLD ? 1 : 0;
+        vote_accumilate += switch_votes[1] >= SWITCH_QUERY_THRESHOLD ? 1 : 0;
+        vote_accumilate += switch_votes[2] >= SWITCH_QUERY_THRESHOLD ? 1 : 0;
+        vote_accumilate += switch_votes[3] >= SWITCH_QUERY_THRESHOLD ? 1 : 0;
+
+        // 4 or 3 switches open - vote passes
+        if(vote_accumilate > 2){
+            m_vote_pass_counter += 1;
+        } else {
+            m_vote_pass_counter = 0;
+        }
+
+        if(m_vote_pass_counter >= DEPLOYMET_CONFIRM){
+            m_is_deployed = true;
+            m_time_deployed_ms = millis();
+        }
+
+    }
+
+    void check_respond_parachute_deployment(){
+        if(!m_is_deployed) return;
+
+        if(m_time_deployed_ms + m_parachute_delay_ms >= millis()){
+            // @TODO add parachute trigger
+            m_is_parachute_deployed = true;
+        }
+    }
 
     void run(){
-        
+        check_respond_launch_detection();
+        check_respond_deployment();
+        check_respond_parachute_deployment();
     }
 
     // Increments on true deployment check 
@@ -30,10 +92,11 @@ private:
     uint32_t m_time_deployed_ms{0};
     bool m_is_deployed{false};
 
-    uint8_t m_parachute_delay_ms{NOMINAL_PARACHUTE_DELAY};
+    uint16_t m_parachute_delay_ms{NOMINAL_PARACHUTE_DELAY};
+    bool m_is_parachute_deployed{false};
 
     // Set time of launch
-    uint32_t m_launch_time{0};
+    uint32_t m_launch_time_ms{0};
     bool m_is_launched{false};
 
 };

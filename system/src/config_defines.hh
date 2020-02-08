@@ -15,5 +15,9 @@
 
 // #TODO fix these pins
 #define PIN_HEARTBEAT_LED LED_BUILTIN
+#define PIN_DEPLOY_01 10
+#define PIN_DEPLOY_02 11
+#define PIN_DEPLOY_03 12
+#define PIN_DEPLOY_04 13
 
 #define NOMINAL_PARACHUTE_DELAY 3000
