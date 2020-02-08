@@ -16,6 +16,7 @@
 #define SWITCH_QUERY_THRESHOLD 15
 #define DEPLOYMET_CONFIRM 50
 #define DEPLOYMENT_TIMEOUT 40000
+#define NOMINAL_PARACHUTE_DELAY 2000
 
 template <typename EnvType>
 class cMissionEvents : public psycron::TimedRoutine<EnvType>
@@ -43,7 +44,7 @@ private:
     void check_respond_launch_detection(){
         // Now deployed
         if(m_is_deployed) return;
-        
+
         // Activate cSciencePayload
     }
 
