@@ -15,6 +15,7 @@
 #define SWITCH_QUERY_COUNT 20
 #define SWITCH_QUERY_THRESHOLD 15
 #define DEPLOYMET_CONFIRM 50
+#define DEPLOYMENT_TIMEOUT 40000
 
 template <typename EnvType>
 class cMissionEvents : public psycron::TimedRoutine<EnvType>
@@ -34,7 +35,7 @@ public:
 private:
 
     void check_respond_launch_detection(){
-
+        // Activate cSciencePayload
     }
 
     void check_respond_deployment(){
@@ -67,6 +68,8 @@ private:
         if(m_vote_pass_counter >= DEPLOYMET_CONFIRM){
             m_is_deployed = true;
             m_time_deployed_ms = millis();
+            // Activate cRecovery 
+            // Activate cSciencePayload
         }
 
     }
