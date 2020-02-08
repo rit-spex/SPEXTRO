@@ -11,6 +11,7 @@
 #pragma once
 
 #include "config_defines.hh"
+#include "flight_env.hh"
 
 #define SWITCH_QUERY_COUNT 20
 #define SWITCH_QUERY_THRESHOLD 15
@@ -76,22 +77,34 @@ private:
         }
 
         if(m_vote_pass_counter >= DEPLOYMET_CONFIRM){
-            m_is_deployed = true;
-            m_time_deployed_ms = millis();
-            // Activate cRecovery 
-            // Activate cSciencePayload
+            trigger_deployment();
         }
 
+    }
+
+    void trigger_deployment(){
+        m_is_deployed = true;
+        m_time_deployed_ms = millis();
+        this->_get_envrionment().payload_params.system_phase
+            .update(millis(), flight_phase::PAYLOAD_DEPLOYED);
+        // Activate cRecovery 
+        // Activate cSciencePayload
     }
 
     void check_respond_parachute_deployment(){
         if(!m_is_deployed || m_is_parachute_deployed) return;
 
-        if(m_time_deployed_ms + m_parachute_delay_ms >= millis()){
-            // Trigger the parachute
-            digitalWrite(PIN_PARACHUTE_TRIGGER, HIGH);
-            m_is_parachute_deployed = true;
+        if(m_time_deployed_ms + m_parachute_delay_ms <= millis()){
+            trigger_parachute();
         }
+    }
+
+    void trigger_parachute(){
+        // Trigger the parachute
+        digitalWrite(PIN_PARACHUTE_TRIGGER, HIGH);
+        m_is_parachute_deployed = true;
+        this->_get_envrionment().payload_params.system_phase
+            .update(millis(), flight_phase::PARACHUTE_DEPLOYED);
     }
 
     void run(){

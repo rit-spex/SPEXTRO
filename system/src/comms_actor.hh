@@ -54,6 +54,15 @@ public:
      */
     void init();
 
+    /**
+     * Memcpys out inbound command buffer, flushing the 
+     * command buffer.
+     * 
+     * @param buffer The buffer to place the command data in.
+     * @return The size of the command buffer.
+     */
+    uint8_t flush_copy_command(uint8_t** buffer);
+
 private:
 
     /**
@@ -72,14 +81,20 @@ private:
      */
     bool receive_handler(bool block_for_tansmit_status = false);
 
+
     bool m_initalized{false};
 
     bool m_packet_data_loaded{false};
     bool m_packet_transmitting{false};
     uint16_t m_fail_count{0};
 
+    // Load buffer used for outbound telemetry data
     uint8_t m_load_buffer[UINT8_MAX] = {0};
     uint8_t m_buffer_size{0};
+
+    // Command buffer used for inbound commands
+    uint8_t m_command_buffer[UINT8_MAX] = {0};
+    uint8_t m_command_buffer_size{0};
 
     XBee m_xbee{};
     XBeeAddress64 m_addr_ground{XBEE_ADDR_GROUND_HI, XBEE_ADDR_GROUND_LOW};

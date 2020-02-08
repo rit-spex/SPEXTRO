@@ -125,3 +125,12 @@ message Telemetry {
         HardwareERROR hardware_error = 13;
     }
 }
+
+message Command {
+    enum CommandType {
+        ARM_PAYLOAD = 1;
+        DISARM_PAYLOAD =2;
+    }
+
+    CommandType type = 1;
+}
