@@ -55,7 +55,7 @@ public:
      * Dispatches telemetry according to the state machine. Serialized messages are
      * placed in the work buffer to be passed on later.
      * 
-     * @param env The envrionment which contains all the data needed to send relevent telemetry.
+     * @param env The environment which contains all the data needed to send relevent telemetry.
      */
     void dispatch_telemetry(struct flight_env* env);
 

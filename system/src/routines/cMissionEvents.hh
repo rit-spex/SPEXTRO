@@ -10,14 +10,16 @@
 
 #pragma once
 
+#include <stdlib.h>
+
 #include "config_defines.hh"
 #include "flight_env.hh"
 
 #define SWITCH_QUERY_COUNT 20
 #define SWITCH_QUERY_THRESHOLD 15
-#define DEPLOYMET_CONFIRM 50
+#define DEPLOYMET_CONFIRM 25
 #define DEPLOYMENT_TIMEOUT 40000
-#define NOMINAL_PARACHUTE_DELAY 2000
+#define NOMINAL_PARACHUTE_DELAY 2500
 
 template <typename EnvType>
 class cMissionEvents : public psycron::TimedRoutine<EnvType>
@@ -49,6 +51,21 @@ private:
         // Activate cSciencePayload
     }
 
+    /**
+     * Uses a voting method to determine payload deployment.
+     * 3 or 4 switches depressed, vote passed
+     * 2 or 1 switches depressed, vote fails
+     * This is done to defeat switch failures such as floating voltage, etc..
+     * 
+     * On deployment confirmation >= DEPLOYMENT_CONFIRM successful votes, internal
+     * state is adjusted accordingly.
+     * Requiring subsequent successful votes passed defeats the possibility of deployment 
+     * confirming while still in the rocket. There is a chance the payload is not fit
+     * exactly inside the rocket causing switches to open and close. 
+     * 
+     * Vote must pass >= DEPLOYMET_CONFIRM times for payload to be considered deployed
+     * from the last vote fail.
+     */
     void check_respond_deployment(){
         // Now deployed
         if(m_is_deployed) return;
@@ -79,18 +96,25 @@ private:
         if(m_vote_pass_counter >= DEPLOYMET_CONFIRM){
             trigger_deployment();
         }
-
     }
 
+    /**
+     * Perform the necessary logic to move to the deployed state and 
+     * send back telemetry back to the ground station notifying state changes.
+     */
     void trigger_deployment(){
         m_is_deployed = true;
         m_time_deployed_ms = millis();
-        this->_get_envrionment().payload_params.system_phase
+        this->_get_environment().payload_params.system_phase
             .update(millis(), flight_phase::PAYLOAD_DEPLOYED);
         // Activate cRecovery 
         // Activate cSciencePayload
     }
 
+    /**
+     * Deploy the parachute m_parachute_delay_ms from m_time_deployed_ms. This entails driving
+     * a gpio pin high which triggers duel redundant ematches to start the mechanical sequence.
+     */
     void check_respond_parachute_deployment(){
         if(!m_is_deployed || m_is_parachute_deployed) return;
 
@@ -99,11 +123,15 @@ private:
         }
     }
 
+    /**
+     * Trigger the mechanical sequence for the parachute, setting internal state 
+     * and sending telemetry notifying state.
+     */
     void trigger_parachute(){
         // Trigger the parachute
         digitalWrite(PIN_PARACHUTE_TRIGGER, HIGH);
         m_is_parachute_deployed = true;
-        this->_get_envrionment().payload_params.system_phase
+        this->_get_environment().payload_params.system_phase
             .update(millis(), flight_phase::PARACHUTE_DEPLOYED);
     }
 

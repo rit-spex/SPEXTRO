@@ -16,15 +16,15 @@ class mCommsDirector : public psycron::TimedRoutine<EnvType>
 public:
 
     void init(){
-        this->_get_envrionment().comms_actor.init();
+        this->_get_environment().comms_actor.init();
     }
 
 private:
 
     void run(){
-        this->_get_envrionment().comms_actor.perform();
+        this->_get_environment().comms_actor.perform();
         // Call to dispatcher which loads telemetry according to the telemetry state machine.
-        telemetry_dispatcher.dispatch_telemetry(&this->_get_envrionment());
+        telemetry_dispatcher.dispatch_telemetry(&this->_get_environment());
     }
 
     TelemetryDispatcher telemetry_dispatcher{};
