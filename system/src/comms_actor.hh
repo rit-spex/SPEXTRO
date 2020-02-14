@@ -4,7 +4,7 @@
 // class: CommsActor
 // desc:
 //      Used to facilitate telemetry dispatch and command handling using 
-//      an XBee SX transciever module.
+//      an XBee SX transceiver module.
 //
 
 #include <stdint.h>
@@ -27,7 +27,7 @@ public:
 
     /**
      * Used to load data into the communication actor which is sent by 
-     * the comminications director.
+     * the communications director.
      * 
      * @param data Pointer to the data to be loaded.
      * @param data_size Size of the data to be copied.
@@ -69,18 +69,28 @@ private:
      * Send data in load buffer if we are not transmitting and there
      * is data in the load buffer.
      * 
-     * @return True if somthing was actually sent, false otherwise.
+     * @return True if something was actually sent, false otherwise.
      */
     bool try_send();
 
     /**
-     * Used to handle incoming messages from the transciever module.
+     * Used to handle incoming messages from the transceiver module.
      * 
-     * @param block_for_tansmit_status Block for transmit status messages.
+     * @param block_for_transmit_status Block for transmit status messages.
      * @return False on critical error, true otherwise
      */
-    bool receive_handler(bool block_for_tansmit_status = false);
+    bool receive_handler(bool block_for_transmit_status = false);
 
+    /**
+     * Checks for incoming messages over the XBee communication link. 
+     * It is possible that invalid state is entered due to a missed transmit status. 
+     * Extra logic is used to handle cases where this communication link has possibly broken down. 
+     * 
+     * @param block_for_messages On true, use blocking reads
+     * @return True if message is ready, false otherwise.
+     */
+    bool read_packet(bool block_for_message);
+    
 
     bool m_initalized{false};
 

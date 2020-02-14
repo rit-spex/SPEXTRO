@@ -22,9 +22,10 @@ void TelemetryDispatcher::dispatch_telemetry(struct flight_env* env){
 
     uint8_t length_machine{sizeof(telemetry_machine)/sizeof(telemetry_machine[0])};
 
+    // Move to next state if current state has completed 
     if(!telemetry_machine[m_state_counter].should_repeat()){
         m_state_counter += 1;
-        if(m_state_counter > length_machine){
+        if(m_state_counter >= length_machine){
             m_state_counter = 0;
         }
     }

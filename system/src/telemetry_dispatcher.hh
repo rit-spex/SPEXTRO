@@ -3,7 +3,7 @@
 // file: telemetry_dispatcher.hh
 // class: TelemetryDispatcher
 // desc:
-//      Schedules telemtry messages using a linear state machine, then 
+//      Schedules telemetry messages using a linear state machine, then 
 //      dispatches the binary telemetry message to the requester.
 //
 
@@ -55,7 +55,7 @@ public:
      * Dispatches telemetry according to the state machine. Serialized messages are
      * placed in the work buffer to be passed on later.
      * 
-     * @param env The environment which contains all the data needed to send relevent telemetry.
+     * @param env The environment which contains all the data needed to send relevant telemetry.
      */
     void dispatch_telemetry(struct flight_env* env);
 

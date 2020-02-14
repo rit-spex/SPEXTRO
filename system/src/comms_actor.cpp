@@ -18,31 +18,38 @@ const bool CommsActor::load_data(const uint8_t* data, const uint8_t data_size){
     return true;
 }
 
-bool CommsActor::receive_handler(bool block_for_tansmit_status){
-    
-    do {
+bool CommsActor::read_packet(bool block_for_message){
 
-        if(block_for_tansmit_status){
-            if(!m_xbee.readPacket(FAILOVER_TIMEOUT)){
-                // Really bad, just bail out
-                m_packet_transmitting = false;
-                return false;
-            }
-        } else {
-            m_xbee.readPacket();
-            // (TRUE) Didn't catch anything this time, it's okay
-            if(!m_xbee.getResponse().isAvailable()){
-                m_fail_count++;
-                // This is also really bad if true, just set state to allow sends
-                if(m_fail_count > (uint16_t) FAILOVER_TIMEOUT/mCOMMDIRECTOR_DELAY){
-                    m_packet_transmitting = false;
-                    m_fail_count = 0;
-                }
-                continue;
-            }
-
-            m_fail_count = 0;
+    if(block_for_message){
+        if(!m_xbee.readPacket(FAILOVER_TIMEOUT)){
+            // Really bad, just bail out.
+            m_packet_transmitting = false;
+            return false;
         }
+    } else {
+        m_xbee.readPacket();
+        // (TRUE) Didn't catch anything this time, it's okay
+        if(!m_xbee.getResponse().isAvailable()){
+            m_fail_count++;
+            // This is also really bad if m_packet_transmitting is true, just set state to allow sends.
+            if(m_fail_count > (uint16_t) FAILOVER_TIMEOUT/mCOMMDIRECTOR_DELAY){
+                m_packet_transmitting = false;
+                m_fail_count = 0;
+            }
+            return false;
+        }
+
+        m_fail_count = 0;
+    }
+
+    return true; // Received message
+}
+
+bool CommsActor::receive_handler(bool block_for_transmit_status){
+    
+    // Loop while there are messages inbound. If block_for_transmit_status is
+    // true and a packet is still transmitting then block.
+    while(read_packet(m_packet_transmitting && block_for_transmit_status)){
 
         switch (m_xbee.getResponse().getApiId()) {
             case ZB_TX_STATUS_RESPONSE: {
@@ -60,7 +67,7 @@ bool CommsActor::receive_handler(bool block_for_tansmit_status){
                 break;
         }
 
-    } while(block_for_tansmit_status && m_packet_transmitting);
+    }
 
     return true;
 }
@@ -87,6 +94,8 @@ void CommsActor::perform(){
 }
 
 void CommsActor::send_blocking(const uint8_t* data, const uint8_t data_size){
+    if(!m_initalized) return;
+
     receive_handler(true); // Make sure we finished previous send.
     if(m_packet_data_loaded){
         // We don't want to overwrite/preempt data already loaded.

@@ -63,7 +63,7 @@ private:
      * confirming while still in the rocket. There is a chance the payload is not fit
      * exactly inside the rocket causing switches to open and close. 
      * 
-     * Vote must pass >= DEPLOYMET_CONFIRM times for payload to be considered deployed
+     * Vote must pass >= DEPLOYMENT_CONFIRM times for payload to be considered deployed
      * from the last vote fail.
      */
     void check_respond_deployment(){
