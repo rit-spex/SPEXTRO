@@ -72,6 +72,19 @@ bool CommsActor::receive_handler(bool block_for_transmit_status){
     return true;
 }
 
+uint8_t CommsActor::flush_copy_command(uint8_t* buffer, uint8_t buffer_size){
+
+    if(m_command_buffer_size > 0 && buffer_size >= m_command_buffer_size){
+        memcpy(buffer, m_command_buffer, m_command_buffer_size);
+        uint8_t bytes_written{m_command_buffer_size};
+        m_command_buffer_size = 0;
+
+        return bytes_written;
+    }
+
+    return 0;
+}
+
 bool CommsActor::try_send(){
     if(m_packet_data_loaded && !m_packet_transmitting && m_initalized){
         ZBTxRequest tx_request = ZBTxRequest(m_addr_ground, m_load_buffer, m_buffer_size);

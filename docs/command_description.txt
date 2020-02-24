@@ -1,0 +1,19 @@
+arm
+    Name - arm
+    Desc - Arms the payload when in standby phase.
+    CMD - arm
+
+disarm
+    Name - disarm
+    Desc - Disarms the payload when in launch ready phase.
+    CMD - disarm
+
+solenoid_open
+    Name - solenoid_open
+    Desc - Opens the solenoid on the science payload.
+    CMD - solenoid open
+
+solenoid_close
+    Name - solenoid_close
+    Desc - Closes the solenoid on the science payload.
+    CMD - solenoid close

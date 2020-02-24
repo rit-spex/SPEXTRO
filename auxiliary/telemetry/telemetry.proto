@@ -7,6 +7,13 @@ syntax = "proto3";
 
 package spextro;
 
+enum CommandType {
+    ARM_PAYLOAD = 1;
+    DISARM_PAYLOAD = 2;
+    SOLENOID_OPEN = 3;
+    SOLENOID_CLOSE = 4;
+}
+
 message Telemetry {
 
     message Header {
@@ -72,6 +79,11 @@ message Telemetry {
         FlightPhase phase = 3;
     }
 
+    message CommandStatus {
+        Command type = 0;
+        bool was_success = 1;
+    }
+
     message DeploymentSwitchERROR {
         enum SwitchUnit {
             UNIT_1 = 0;
@@ -118,6 +130,7 @@ message Telemetry {
         GPSPosition position = 6;
         Acceleration accel = 7;
         SystemPhase system_phase = 8;
+        CommandStatus cmd_status = 9;
         // Error messages
         DeploymentSwitchERROR switch_error = 10;
         PowerERROR power_error = 11;
@@ -127,10 +140,7 @@ message Telemetry {
 }
 
 message Command {
-    enum CommandType {
-        ARM_PAYLOAD = 1;
-        DISARM_PAYLOAD =2;
-    }
 
     CommandType type = 1;
+
 }
