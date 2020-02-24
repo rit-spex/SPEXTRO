@@ -38,7 +38,7 @@ private:
     void run(){
         this->_get_environment().comms_actor.perform();
         // Call to dispatcher which loads telemetry according to the telemetry state machine.
-        telemetry_dispatcher.dispatch_telemetry(&this->_get_environment());
+        m_telemetry_dispatcher.dispatch_telemetry(&this->_get_environment());
 
     }
 

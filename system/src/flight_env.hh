@@ -20,7 +20,7 @@ public:
         return m_data;
     }
 
-    bool is_vaild(){
+    bool is_valid(){
         return m_valid;
     }
 

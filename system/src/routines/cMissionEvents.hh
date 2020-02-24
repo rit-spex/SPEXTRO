@@ -11,6 +11,7 @@
 #pragma once
 
 #include <stdlib.h>
+#include <math.h>
 
 #include "config_defines.hh"
 #include "flight_env.hh"
@@ -20,6 +21,7 @@
 #define DEPLOYMET_CONFIRM 25
 #define DEPLOYMENT_TIMEOUT 40000
 #define NOMINAL_PARACHUTE_DELAY 2500
+#define ACCEL_THRESHOLD_MPSS 30
 
 template <typename EnvType>
 class cMissionEvents : public psycron::TimedRoutine<EnvType>
@@ -48,6 +50,42 @@ private:
         // Now deployed
         if(m_is_deployed) return;
 
+        // Deployment timeout time trigger
+        if(m_is_launched && m_time_deployed_ms + DEPLOYMENT_TIMEOUT <= millis()){
+            trigger_deployment();
+            return;
+        }
+
+        // Check if we have valid acceleration data
+        if(!this->_get_environment().raw_sensor_params.bno055_accel.is_valid()) return;
+
+        const sensor_bno055_accel& accel_bno055 = this->_get_environment().raw_sensor_params.bno055_accel.get_data();
+
+        // Calculate the magnitude of the acceleration vector.
+        double accel_magnitude = 
+            sqrt(
+                accel_bno055.accel_x_mpss * accel_bno055.accel_x_mpss +
+                accel_bno055.accel_y_mpss * accel_bno055.accel_y_mpss +
+                accel_bno055.accel_z_mpss * accel_bno055.accel_z_mpss
+            );
+
+        if(accel_magnitude >= ACCEL_THRESHOLD_MPSS){
+            m_threshold_over_cnt += 1;
+        } else {
+            m_threshold_over_cnt = 0;
+        }
+        
+        // Need 3 values over threshold for trigger
+        if(m_threshold_over_cnt >= 3 && !m_is_launched){
+            trigger_launch();
+        }
+    }
+
+    void trigger_launch(){
+        m_is_launched = true;
+        m_launch_time_ms = millis();
+        this->_get_environment().payload_params.system_phase
+            .update(millis(), flight_phase::LAUNCHED);
         // Activate cSciencePayload
     }
 
@@ -153,5 +191,6 @@ private:
     // Set time of launch
     uint32_t m_launch_time_ms{0};
     bool m_is_launched{false};
+    uint8_t m_threshold_over_cnt{0};
 
 };
