@@ -62,7 +62,13 @@ bool CommsActor::receive_handler(bool block_for_transmit_status){
 
                 m_packet_transmitting = false;
                 break;
-            } // @TODO Add more cases
+            }
+            case ZB_RX_RESPONSE: {
+                ZBRxResponse rx_response = ZBRxResponse();
+                m_xbee.getResponse().getZBRxResponse(rx_response);
+
+                // TODO call rx_response.getData(); and copy data to m_command_buffer
+            }
             default:
                 break;
         }

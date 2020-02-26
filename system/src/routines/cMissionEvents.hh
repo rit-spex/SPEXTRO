@@ -75,8 +75,8 @@ private:
             m_threshold_over_cnt = 0;
         }
         
-        // Need 3 values over threshold for trigger
-        if(m_threshold_over_cnt >= 3 && !m_is_launched){
+        // Need 20 values over threshold for trigger
+        if(m_threshold_over_cnt >= 20 && !m_is_launched){
             trigger_launch();
         }
     }
