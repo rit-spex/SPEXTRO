@@ -23,18 +23,18 @@ public:
 private:
 
     /**
-     * Grabs the orentation data from the BNO055 as a quaternion, 
+     * Grabs the orientation data from the BNO055 as a quaternion, 
      * updates the flight parameters then logs the quaternion to the 
-     * SD card, serailizing using google protobuf.
+     * SD card, serializing using google protobuf.
      */
-    void handle_orentation(){
+    void handle_orientation(){
 
     }
 
     /**
      * Grabs the accelerometer data from the BNO055 for each axis, x, y, z.
-     * Update the flight parameters, then logs the acceration data to the
-     * SD card, seralilizing using google protobuf.
+     * Update the flight parameters, then logs the acceleration data to the
+     * SD card, serializing using google protobuf.
      */
     void handle_accelerometer(){
 

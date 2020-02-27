@@ -6,3 +6,4 @@
 #include "mCommsDirector.hh"
 
 #include "hBNO055.hh"
+#include "hStratologger.hh"

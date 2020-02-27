@@ -4,6 +4,7 @@
 #define mCOMMDIRECTOR_DELAY 10
 #define cMISSIONEVENTS_DELAY 20
 #define hBNO055_PRIORITY 1
+#define hSTRATOLOGGER_DELAY 200
 
 // @TODO Change these
 #define XBEE_ADDR_GROUND_HI 0x00000000
@@ -12,6 +13,10 @@
 // @TODO Change this
 #define XBEE_SERIAL Serial1
 #define XBEE_BAUD_RATE 9600
+
+// @TODO Change this
+#define STRATOLOGGER_SERIAL Serial2
+#define STRATOLOGGER_RATE 9600
 
 // #TODO fix these pins
 #define PIN_HEARTBEAT_LED LED_BUILTIN

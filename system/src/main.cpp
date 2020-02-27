@@ -42,7 +42,8 @@ void loop(){
         SPEXTROTimedRoutineArgs{new mHeartbeat<flight_env>{}, mHEARTBEAT_ID, mHEARTBEAT_DELAY},
         SPEXTROTimedRoutineArgs{new mCommsDirector<flight_env>{}, mCOMMSDIRECTOR_ID, mCOMMDIRECTOR_DELAY},
         SPEXTROPriorityRoutineArgs{new hBNO055<flight_env>{}, hBNO055_ID, hBNO055_PRIORITY},
-        SPEXTROTimedRoutineArgs{new cMissionEvents<flight_env>{}, cMISSIONEVENTS_ID, cMISSIONEVENTS_DELAY}
+        SPEXTROTimedRoutineArgs{new cMissionEvents<flight_env>{}, cMISSIONEVENTS_ID, cMISSIONEVENTS_DELAY},
+        SPEXTROTimedRoutineArgs{new hStratologger<flight_env>{}, hSTRATOLOGGER_ID, hSTRATOLOGGER_DELAY}
     );
 
     // Blocking call
