@@ -11,6 +11,8 @@
 
 #include "config_defines.hh"
 
+#define ERROR_FAIL_THRESHOLD 5
+
 template<typename EnvType>
 class hStratologger : public psycron::TimedRoutine<EnvType>{
 public:
@@ -48,6 +50,7 @@ private:
     void run(){
 
         while(STRATOLOGGER_SERIAL.available()){
+            m_fail_counter = 0;
             unsigned char in = STRATOLOGGER_SERIAL.read();
 
             if(in == '\n'){
@@ -62,10 +65,19 @@ private:
             }
         }
 
+        m_fail_counter += 1;
+
+        if(m_fail_counter >= ERROR_FAIL_THRESHOLD){
+            // @TODO shoot back a error message to the ground station.
+            m_fail_counter = 0;
+        }
     };
 
     char m_read_buffer[20] = {0};
     uint8_t m_buffer_size{0};
     // First reading from stratologger is absolute altitude
     bool m_got_msl_altitude{false};
+
+    // Incremented on no data received 
+    uint8_t m_fail_counter{0};
 };

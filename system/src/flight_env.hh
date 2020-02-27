@@ -30,7 +30,7 @@ private:
     bool m_valid{false};
 };
 
-struct sensor_bme680{
+struct sensor_bmp388{
     int16_t temperature_degC;
     uint32_t pressure_hPa;
     uint32_t humidity_rel;
@@ -74,7 +74,7 @@ struct payload_data{
 };
 
 struct raw_sensor_data{
-    data_point<struct sensor_bme680> bme680;
+    data_point<struct sensor_bmp388> bme388;
     data_point<struct sensor_bno055_accel> bno055_accel;
     // Add more...
 };
