@@ -10,6 +10,8 @@
 #define XBEE_ADDR_GROUND_HI 0x00000000
 #define XBEE_ADDR_GROUND_LOW 0x00000000
 
+#define LOG_FILE_PREFIX "SPEXTRO_Test-"
+
 // @TODO Change this
 #define XBEE_SERIAL Serial1
 #define XBEE_BAUD_RATE 9600

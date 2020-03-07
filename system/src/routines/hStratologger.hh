@@ -31,10 +31,10 @@ private:
 
     /**
      * Logs the altitude data to the SD card in binary format following the Google protobuf 
-     * specification.
+     * SensorLog specification.
      */
     void log_altitude_data(){
-        // @TODO write data to file
+        // @TODO
     }
 
     /**

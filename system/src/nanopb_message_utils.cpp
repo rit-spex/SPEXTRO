@@ -70,5 +70,21 @@ uint8_t serialize_position(
     const uint8_t buffer_size, 
     const data_point<struct gps_position>* gps_position
 ){
+// @TODO
+};
 
+uint16_t serialize_bno055(
+    uint8_t* buffer, 
+    const uint8_t buffer_size,
+    const bno055 data
+){
+// @TODO
+};
+
+uint16_t serialize_stratologger(
+    uint8_t* buffer, 
+    const uint8_t buffer_size,
+    const stratologgerCF data
+){
+// @TODO
 };

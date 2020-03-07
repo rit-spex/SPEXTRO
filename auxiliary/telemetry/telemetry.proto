@@ -14,6 +14,14 @@ enum CommandType {
     SOLENOID_CLOSE = 4;
 }
 
+message Quaternion {
+    // Quaternion holding absolute orientation
+    int32 a_comp = 1;
+    int32 b_comp = 2;
+    int32 c_comp = 3;
+    int32 d_comp = 4;
+}
+
 message Telemetry {
 
     message Header {
@@ -34,11 +42,7 @@ message Telemetry {
     }
 
     message Orientation {
-        // Quaternion holding absolute orientation
-        int32 a_comp = 1;
-        int32 b_comp = 2;
-        int32 c_comp = 3;
-        int32 d_comp = 4;
+        Quaternion quaternion = 1;
     }
 
     message GPSPosition {
@@ -80,8 +84,8 @@ message Telemetry {
     }
 
     message CommandStatus {
-        Command type = 0;
-        bool was_success = 1;
+        Command type = 1;
+        bool was_success = 2;
     }
 
     message DeploymentSwitchERROR {
@@ -143,4 +147,31 @@ message Command {
 
     CommandType type = 1;
 
+}
+
+message SensorLog {
+
+    message PollTime {
+        // sent_time is time from system initialization in seconds
+        uint32 sent_time_s = 1;
+    }
+
+    message BNO055 {
+        int32 accel_x = 1;
+        int32 accel_y = 2;
+        int32 accel_z = 3;
+        Quaternion quaternion_orentation = 4;
+    }
+
+    message StratoLoggerCF {
+        float altitude_m = 1;
+    }
+
+    PollTime poll_time = 1;
+
+    oneof data {
+        BNO055 bno055 = 2;
+        StratoLoggerCF stratologgerCF = 3;
+    }
+    
 }
