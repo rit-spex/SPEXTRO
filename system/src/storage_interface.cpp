@@ -10,11 +10,10 @@ void StorageInterface::init(){
 
     m_is_initalized = true;
     // Attempt to create file for logging.
-    m_encountered_error = !create_file();
+    generate_filename();
 
 };
 
-bool StorageInterface::create_file(){
+void StorageInterface::generate_filename(){
     // @TODO
-    return true;
 }

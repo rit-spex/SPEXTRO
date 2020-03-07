@@ -61,7 +61,7 @@ private:
 
         while(STRATOLOGGER_SERIAL.available()){
 
-            // This should never happen, just code servers as protection 
+            // This should never happen, code serves as protection 
             // against index out of range issues
             if(m_buffer_size >= READ_BUFFER_SIZE) {
                 m_buffer_size = 0;

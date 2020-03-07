@@ -10,7 +10,8 @@
 #define XBEE_ADDR_GROUND_HI 0x00000000
 #define XBEE_ADDR_GROUND_LOW 0x00000000
 
-#define LOG_FILE_PREFIX "SPEXTRO_Test-"
+#define LOG_FILE_PREFIX "SPEXTRO_test-"
+#define REBOUND_FILENAME "rebound\0"
 
 // Actual flight configuration
 #ifdef TEENSY_40_FLIGHT

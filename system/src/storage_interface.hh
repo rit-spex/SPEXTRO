@@ -15,6 +15,7 @@
 #include "config_defines.hh"
 
 #define INTERFACE_BUFFER_SIZE 16000
+#define FILENAME_CAP 30
 
 class StorageInterface {
 public:
@@ -25,12 +26,18 @@ public:
 
 private:
 
+    /**
+     * Writes all of the contents in m_buffer to the log file.
+     * 
+     * @return Number of bytes written.
+     */
     uint16_t write_buffer();
 
-    bool create_file();
+    void generate_filename();
 
-    // Persistent file
-    File m_file{};
+    char m_log_filename[FILENAME_CAP] = {0};
+    // File which holds flight information to rebound from failures
+    char m_rebound_filename[] = REBOUND_FILENAME;
 
     uint8_t m_buffer[INTERFACE_BUFFER_SIZE] = {0};
     uint16_t m_buffer_size{0};
