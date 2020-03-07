@@ -171,6 +171,7 @@ private:
         m_is_parachute_deployed = true;
         this->_get_environment().payload_params.system_phase
             .update(millis(), flight_phase::PARACHUTE_DEPLOYED);
+        // Deactivate this routine
     }
 
     void run(){

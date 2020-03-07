@@ -36,6 +36,9 @@ void loop(){
 
     flight_env flight_data{};
 
+    // Initialize the SD card
+    flight_data.storage_interface.init();
+
     psycron_ins.add_application(
         0,
         flight_data,

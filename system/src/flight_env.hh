@@ -2,6 +2,7 @@
 #pragma once
 
 #include "comms_actor.hh"
+#include "storage_interface.hh"
 
 template<typename T>
 struct data_point{
@@ -81,6 +82,7 @@ struct raw_sensor_data{
 
 struct flight_env{
     CommsActor comms_actor{};
+    StorageInterface storage_interface{};
     payload_data payload_params;
     raw_sensor_data raw_sensor_params;
 };

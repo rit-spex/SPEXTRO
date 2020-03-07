@@ -7,6 +7,8 @@
 //      write data to a SD card connected via SPI.
 //
 
+#pragma once
+
 #include <stdint.h>
 #include <SD.h>
 
@@ -17,9 +19,9 @@
 class StorageInterface {
 public:
 
-    uint16_t load(uint8_t source, uint16_t source_size);
+    uint16_t load(uint8_t* source_buffer, uint16_t source_size);
 
-    bool init();
+    void init();
 
 private:
 
@@ -27,11 +29,12 @@ private:
 
     bool create_file();
 
-    File m_file;
+    // Persistent file
+    File m_file{};
 
     uint8_t m_buffer[INTERFACE_BUFFER_SIZE] = {0};
     uint16_t m_buffer_size{0};
 
     bool m_is_initalized{false};
-
+    bool m_encountered_error{false};
 };
