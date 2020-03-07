@@ -61,7 +61,7 @@ public:
      * @param buffer The buffer to place the command data in.
      * @return The size of the command buffer.
      */
-    uint8_t flush_copy_command(uint8_t* buffer, uint8_t buffer_size);
+    uint8_t flush_copy_command(uint8_t* buffer, uint8_t buffer_capacity);
 
 private:
 

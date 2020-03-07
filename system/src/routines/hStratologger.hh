@@ -11,6 +11,8 @@
 
 #include "config_defines.hh"
 
+#define READ_BUFFER_SIZE 20
+// Must be greater than 2
 #define ERROR_FAIL_THRESHOLD 5
 
 template<typename EnvType>
@@ -26,6 +28,14 @@ public:
     };
 
 private:
+
+    /**
+     * Logs the altitude data to the SD card in binary format following the Google protobuf 
+     * specification.
+     */
+    void log_altitude_data(){
+        // @TODO write data to file
+    }
 
     /**
      * Updates the system altitude data using altitude data within the read buffer. 
@@ -50,8 +60,15 @@ private:
     void run(){
 
         while(STRATOLOGGER_SERIAL.available()){
-            m_fail_counter = 0;
+
+            // This should never happen, just code servers as protection 
+            // against index out of range issues
+            if(m_buffer_size >= READ_BUFFER_SIZE) {
+                m_buffer_size = 0;
+            }
+
             unsigned char in = STRATOLOGGER_SERIAL.read();
+            m_fail_counter = 0;
 
             if(in == '\n'){
                 // Trigger update
@@ -73,7 +90,7 @@ private:
         }
     };
 
-    char m_read_buffer[20] = {0};
+    char m_read_buffer[READ_BUFFER_SIZE] = {0};
     uint8_t m_buffer_size{0};
     // First reading from stratologger is absolute altitude
     bool m_got_msl_altitude{false};
