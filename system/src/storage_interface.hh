@@ -20,24 +20,24 @@
 class StorageInterface {
 public:
 
-    uint16_t load(uint8_t* source_buffer, uint16_t source_size);
+    uint16_t load(const uint8_t* source_buffer, const uint16_t source_size);
+
+    uint16_t load_with_size_prepend(const uint8_t* source_buffer, const uint16_t source_size);
 
     void init();
 
 private:
 
     /**
-     * Writes all of the contents in m_buffer to the log file.
+     * Writes all contents in m_buffer to the log file.
      * 
      * @return Number of bytes written.
      */
     uint16_t write_buffer();
 
-    void generate_filename();
+    void generate_log_filename();
 
     char m_log_filename[FILENAME_CAP] = {0};
-    // File which holds flight information to rebound from failures
-    char m_rebound_filename[] = REBOUND_FILENAME;
 
     uint8_t m_buffer[INTERFACE_BUFFER_SIZE] = {0};
     uint16_t m_buffer_size{0};

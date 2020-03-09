@@ -8,10 +8,10 @@ syntax = "proto3";
 package spextro;
 
 enum CommandType {
-    ARM_PAYLOAD = 1;
-    DISARM_PAYLOAD = 2;
-    SOLENOID_OPEN = 3;
-    SOLENOID_CLOSE = 4;
+    ARM_PAYLOAD = 0;
+    DISARM_PAYLOAD = 1;
+    SOLENOID_OPEN = 2;
+    SOLENOID_CLOSE = 3;
 }
 
 message Quaternion {

@@ -43,10 +43,10 @@ uint8_t serialize_orientation(
     message.has_header = true;
     message.which_data = spextro_Telemetry_orientation_tag;
 
-    message.data.orientation.a_comp = orientation->get_data().a;
-    message.data.orientation.b_comp = orientation->get_data().b;
-    message.data.orientation.c_comp = orientation->get_data().c;
-    message.data.orientation.d_comp = orientation->get_data().d;
+    message.data.orientation.quaternion.a_comp = orientation->get_data().a;
+    message.data.orientation.quaternion.b_comp = orientation->get_data().b;
+    message.data.orientation.quaternion.c_comp = orientation->get_data().c;
+    message.data.orientation.quaternion.d_comp = orientation->get_data().d;
 
     bool status = pb_encode(&stream, spextro_Telemetry_fields, &message);
 
@@ -86,5 +86,17 @@ uint16_t serialize_stratologger(
     const uint8_t buffer_size,
     const stratologgerCF data
 ){
-// @TODO
+
+    spextro_SensorLog message = spextro_SensorLog_init_zero;
+
+    pb_ostream_t stream = pb_ostream_from_buffer(buffer, buffer_size);
+
+    message.poll_time.sent_time_s = data.poll_time;
+    message.data.stratologgerCF.altitude_m = data.altitude_m;
+
+    bool status = pb_encode(&stream, spextro_SensorLog_fields, &message);
+
+    if(!status) return 0;
+
+    return stream.bytes_written;
 };

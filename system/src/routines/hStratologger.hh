@@ -9,7 +9,10 @@
 
 #pragma once
 
+#include <telemetry.pb.h>
+
 #include "config_defines.hh"
+#include "nanopb_message_utils.hh"
 
 #define READ_BUFFER_SIZE 20
 // Must be greater than 2
@@ -33,8 +36,14 @@ private:
      * Logs the altitude data to the SD card in binary format following the Google protobuf 
      * SensorLog specification.
      */
-    void log_altitude_data(){
-        // @TODO
+    void log_altitude_data(const stratologgerCF stratologger_data){
+
+        uint8_t write_buffer[spextro_SensorLog_size] = {0};
+
+        uint16_t write_size = serialize_stratologger(write_buffer, spextro_SensorLog_size, stratologger_data);
+
+        // Write the data to the SD buffer
+        this->_get_environment().storage_interface.load_with_size_prepend(write_buffer, write_size);
     }
 
     /**
@@ -53,6 +62,12 @@ private:
             this->_get_environment().payload_params.sea_level_altitude_meters.update(millis(), altitude);
             m_got_msl_altitude = true;
         }
+
+        stratologgerCF stratologger_data{};
+        stratologger_data.poll_time = millis();
+        stratologger_data.altitude_m = altitude;
+
+        log_altitude_data(stratologger_data);
 
         m_buffer_size = 0;
     }
