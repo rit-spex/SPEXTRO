@@ -25,6 +25,11 @@ public:
 
 private:
 
+    /**
+     * Log data collected from the bno055 to the storage buffer.
+     * 
+     * @param bno055_data BNO055 data
+     */
     void log_bno055_data(bno055& bno055_data){
 
         uint8_t write_buffer[spextro_SensorLog_size] = {0};
@@ -39,6 +44,8 @@ private:
      * Grabs the orientation data from the BNO055 as a quaternion, 
      * updates the flight parameters then logs the quaternion to the 
      * SD card, serializing using google protobuf.
+     * 
+     * @param bno055_data Write struct to be packed with orientation data
      */
     void handle_orientation(bno055& bno055_data){
         imu::Quaternion quat = m_bno.getQuat();

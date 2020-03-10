@@ -36,11 +36,15 @@ public:
         pinMode(PIN_DEPLOY_03, INPUT);
         pinMode(PIN_DEPLOY_04, INPUT);
 
-        pinMode(PIN_PARACHUTE_ARM, OUTPUT);
-        pinMode(PIN_PARACHUTE_TRIGGER, OUTPUT);
+        pinMode(PIN_ARM_EMATCH_0, OUTPUT);
+        pinMode(PIN_FIRE_EMATCH_0, OUTPUT);
+        pinMode(PIN_ARM_EMATCH_1, OUTPUT);
+        pinMode(PIN_FIRE_EMATCH_1, OUTPUT);
 
-        digitalWrite(PIN_PARACHUTE_ARM, LOW);
-        digitalWrite(PIN_PARACHUTE_TRIGGER, LOW);
+        digitalWrite(PIN_ARM_EMATCH_0, LOW);
+        digitalWrite(PIN_FIRE_EMATCH_0, LOW);
+        digitalWrite(PIN_ARM_EMATCH_1, LOW);
+        digitalWrite(PIN_FIRE_EMATCH_1, LOW);
 
     }
 
@@ -167,7 +171,8 @@ private:
      */
     void trigger_parachute(){
         // Trigger the parachute
-        digitalWrite(PIN_PARACHUTE_TRIGGER, HIGH);
+        digitalWrite(PIN_FIRE_EMATCH_0, HIGH);
+        digitalWrite(PIN_FIRE_EMATCH_1, HIGH);
         m_is_parachute_deployed = true;
         this->_get_environment().payload_params.system_phase
             .update(millis(), flight_phase::PARACHUTE_DEPLOYED);
