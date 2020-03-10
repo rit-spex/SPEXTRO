@@ -30,7 +30,7 @@ private:
      * 
      * @param bno055_data BNO055 data
      */
-    void log_bno055_data(bno055& bno055_data){
+    void log_bno055_data(const bno055& bno055_data){
 
         uint8_t write_buffer[spextro_SensorLog_size] = {0};
 

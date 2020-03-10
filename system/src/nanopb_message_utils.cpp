@@ -76,7 +76,7 @@ uint8_t serialize_position(
 uint16_t serialize_bno055(
     uint8_t* buffer, 
     const uint8_t buffer_size,
-    const bno055 data
+    const bno055& data
 ){
     spextro_SensorLog message = spextro_SensorLog_init_zero;
 
@@ -102,7 +102,7 @@ uint16_t serialize_bno055(
 uint16_t serialize_stratologger(
     uint8_t* buffer, 
     const uint8_t buffer_size,
-    const stratologgerCF data
+    const stratologgerCF& data
 ){
 
     spextro_SensorLog message = spextro_SensorLog_init_zero;
