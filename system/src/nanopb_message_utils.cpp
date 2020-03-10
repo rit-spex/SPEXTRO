@@ -83,6 +83,10 @@ uint16_t serialize_bno055(
     pb_ostream_t stream = pb_ostream_from_buffer(buffer, buffer_size);
 
     message.poll_time.sent_time_s = data.poll_time;
+
+    message.has_poll_time = true;
+    message.which_data = spextro_SensorLog_bno055_tag;
+
     message.data.bno055.accel_x = data.accel_x;
     message.data.bno055.accel_y = data.accel_y;
     message.data.bno055.accel_z = data.accel_z;
@@ -110,6 +114,8 @@ uint16_t serialize_stratologger(
     pb_ostream_t stream = pb_ostream_from_buffer(buffer, buffer_size);
 
     message.poll_time.sent_time_s = data.poll_time;
+    message.has_poll_time = true;
+    message.which_data = spextro_SensorLog_stratologgerCF_tag;
     message.data.stratologgerCF.altitude_m = data.altitude_m;
 
     bool status = pb_encode(&stream, spextro_SensorLog_fields, &message);

@@ -34,6 +34,7 @@ void StorageInterface::generate_log_filename(){
         itoa(seq_number, seq_buffer, 10);
 
         strlcat(temp_filename, seq_buffer, FILENAME_CAP);
+        strlcat(temp_filename, ".log", FILENAME_CAP);
 
         seq_number += 1;
 
@@ -55,7 +56,7 @@ uint16_t StorageInterface::load(const uint8_t* source_buffer, const uint16_t sou
     }
 
     // Load data into buffer
-    memcpy(m_buffer, source_buffer, source_size);
+    memcpy(m_buffer + m_buffer_size, source_buffer, source_size);
     m_buffer_size += source_size;
 
     return source_size;
@@ -85,7 +86,7 @@ uint16_t StorageInterface::write_buffer(){
 
     if(!m_is_initalized || m_buffer_size == 0) return 0;
 
-    File log_file = SD.open(m_log_filename, O_CREAT | O_APPEND);
+    File log_file = SD.open(m_log_filename, O_CREAT | O_APPEND | O_WRITE);
 
     if(!log_file){
         // @TODO send error 

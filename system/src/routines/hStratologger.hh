@@ -73,7 +73,7 @@ private:
         Serial.println("hStratoLogger Routine Run");
         stratologgerCF stratologger_data{};
         stratologger_data.poll_time = millis();
-        stratologger_data.altitude_m = 0;
+        stratologger_data.altitude_m = 100;
 
         log_stratologger_data(stratologger_data);
         

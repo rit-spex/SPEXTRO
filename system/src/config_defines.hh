@@ -10,9 +10,7 @@
 #define XBEE_ADDR_GROUND_HI 0x00000000
 #define XBEE_ADDR_GROUND_LOW 0x00000000
 
-#define LOG_FILE_PREFIX "SPEXTRO_test-"
-#define REBOUND_FILENAME "rebound\0"
-
+#define LOG_FILE_PREFIX "TESTL_"
 
 // Actual flight configuration
 #ifdef TEENSY_40_FLIGHT
@@ -68,7 +66,9 @@
 #define PIN_DEPLOY_02 11
 #define PIN_DEPLOY_03 12
 #define PIN_DEPLOY_04 13
-#define PIN_PARACHUTE_TRIGGER 15
-#define PIN_PARACHUTE_ARM 16
+#define PIN_ARM_EMATCH_1 23
+#define PIN_FIRE_EMATCH_1 9
+#define PIN_ARM_EMATCH_0 6
+#define PIN_FIRE_EMATCH_0 21
 
 #endif
