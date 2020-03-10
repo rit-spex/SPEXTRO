@@ -67,7 +67,14 @@ bool CommsActor::receive_handler(bool block_for_transmit_status){
                 ZBRxResponse rx_response = ZBRxResponse();
                 m_xbee.getResponse().getZBRxResponse(rx_response);
 
-                // TODO call rx_response.getData(); and copy data to m_command_buffer
+                // Only accept commands if none are pending
+                if(m_command_buffer_size == 0){
+                    uint8_t response_data_size = rx_response.getDataLength();
+
+                    memcpy(m_command_buffer, rx_response.getData(), response_data_size);
+                    m_command_buffer_size = response_data_size;
+                }
+                
             }
             default:
                 break;

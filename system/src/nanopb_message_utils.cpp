@@ -32,7 +32,7 @@ uint8_t serialize_altitude(
 uint8_t serialize_orientation(
     uint8_t* buffer, 
     const uint8_t buffer_size, 
-    const data_point<struct orientation>* orientation
+    const data_point<struct orientation_quat>* orientation
 ){
 
     spextro_Telemetry message = spextro_Telemetry_init_zero;
@@ -78,7 +78,25 @@ uint16_t serialize_bno055(
     const uint8_t buffer_size,
     const bno055 data
 ){
-// @TODO
+    spextro_SensorLog message = spextro_SensorLog_init_zero;
+
+    pb_ostream_t stream = pb_ostream_from_buffer(buffer, buffer_size);
+
+    message.poll_time.sent_time_s = data.poll_time;
+    message.data.bno055.accel_x = data.accel_x;
+    message.data.bno055.accel_y = data.accel_y;
+    message.data.bno055.accel_z = data.accel_z;
+
+    message.data.bno055.quaternion_orentation.a_comp = data.a_comp;
+    message.data.bno055.quaternion_orentation.b_comp = data.b_comp;
+    message.data.bno055.quaternion_orentation.c_comp = data.c_comp;
+    message.data.bno055.quaternion_orentation.d_comp = data.d_comp;
+
+    bool status = pb_encode(&stream, spextro_SensorLog_fields, &message);
+
+    if(!status) return 0;
+
+    return stream.bytes_written;
 };
 
 uint16_t serialize_stratologger(

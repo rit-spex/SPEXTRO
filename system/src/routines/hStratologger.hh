@@ -24,10 +24,6 @@ public:
 
     void init(){
         STRATOLOGGER_SERIAL.begin(STRATOLOGGER_RATE);
-
-        while(!STRATOLOGGER_SERIAL){
-            delay(1);
-        }
     };
 
 private:
@@ -36,7 +32,7 @@ private:
      * Logs the altitude data to the SD card in binary format following the Google protobuf 
      * SensorLog specification.
      */
-    void log_altitude_data(const stratologgerCF stratologger_data){
+    void log_stratologger_data(const stratologgerCF stratologger_data){
 
         uint8_t write_buffer[spextro_SensorLog_size] = {0};
 
@@ -67,13 +63,21 @@ private:
         stratologger_data.poll_time = millis();
         stratologger_data.altitude_m = altitude;
 
-        log_altitude_data(stratologger_data);
+        log_stratologger_data(stratologger_data);
 
         m_buffer_size = 0;
     }
 
     void run(){
+        // Remove this
+        Serial.println("hStratoLogger Routine Run");
+        stratologgerCF stratologger_data{};
+        stratologger_data.poll_time = millis();
+        stratologger_data.altitude_m = 0;
 
+        log_stratologger_data(stratologger_data);
+        
+        
         while(STRATOLOGGER_SERIAL.available()){
 
             // This should never happen, code serves as protection 

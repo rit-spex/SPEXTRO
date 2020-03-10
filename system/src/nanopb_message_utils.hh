@@ -54,7 +54,7 @@ uint8_t serialize_altitude(
 uint8_t serialize_orientation(
     uint8_t* buffer, 
     const uint8_t buffer_size, 
-    const data_point<struct orientation>* orientation
+    const data_point<struct orientation_quat>* orientation
 );
 
 /**
