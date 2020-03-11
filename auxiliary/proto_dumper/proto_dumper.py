@@ -13,6 +13,10 @@ import os
 import sys
 
 
+def usage():
+    print("python3 proto_dumper.py <LOGFILE>")
+    exit(1)
+
 def write_data_collection(data_collection: dict):
     dir_name = "SPEXTRO_LOG_" + datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
     
@@ -65,6 +69,10 @@ def make_data_collection(filepath: str):
 
 
 def main():
+
+    if(len(sys.argv) != 2):
+        usage()
+
     filepath_log_file = sys.argv[1]
 
     data_collection = make_data_collection(filepath_log_file)
