@@ -19,6 +19,7 @@ public:
 
     void init(){
         this->_get_environment().comms_actor.init();
+        // @TODO Drive high the mux select for XBee control
     }
 
 private:
